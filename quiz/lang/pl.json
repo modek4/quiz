@@ -1,0 +1,680 @@
+{
+    "language": "pl",
+    "login": {
+        "login_nav_text": "Zaloguj",
+        "register_nav_text": "Zarejestruj",
+        "faq_nav_text": "FAQ",
+        "reset_password_nav_text": "Reset hasła",
+        "login_menu": {
+            "login_text": "Zaloguj",
+            "email": "Email",
+            "password": "Hasło",
+            "forgot_password": "Zapomniałeś hasła?"
+        },
+        "reset_password":{
+            "reset_password_text": "Zmień hasło",
+            "email": "Email",
+            "activate_code": "Kod aktywacyjny",
+            "new_password": "Nowe hasło",
+            "repeat_password": "Powtórz hasło"
+        },
+        "register_menu": {
+            "register_text": "Zarejestruj",
+            "email": "Email",
+            "password": "Hasło",
+            "repeat_password": "Powtórz hasło",
+            "activate_code": "Kod aktywacyjny",
+            "register_sub_text": "Aby zdobyć kod aktywacyjny, skontaktuj się z administratorem."
+        },
+        "faq":{
+            "about": "Czym jest ta strona?",
+            "about_text": "To strona internetowa oferująca quizy dla użytkowników w zamian za opłatę.",
+            "how_it_works": "Jak działa ta strona?",
+            "how_it_works_text": "Użytkownicy dokonują płatności za dostęp do quizów, a następnie mogą wybierać spośród różnych quizów dostępnych na stronie i rozwiązywać je online.",
+            "where_to_see": "Gdzie mogę zobaczyć jak wygląda strona?",
+            "where_to_see_text": "Cały kod strony z opisem działania, dostępny jest na githubie: ",
+            "access": "Jak uzyskać dostęp do strony?",
+            "access_text": "Skontaktuj się z administratorem lub właścicielem w celu uzyskania dostępu do strony internetowej."
+        },
+        "texts":{
+            "incorrect_password": "Nieprawidłowy email lub hasło!",
+            "account_blocked": "Konto zablokowane. Skontaktuj się z administratorem.",
+            "new_login_notification": "Nowe logowanie",
+            "new_login_new_phone_notification_text": "Wykryliśmy logowanie na twoje konto z nowego telefonu. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
+            "new_login_phone_notification_text": "Wykryliśmy logowanie na twoje konto z telefonu w nowej lokalizacji. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
+            "new_login_device_notification_text": "Wykryliśmy logowanie na twoje konto z urządzenia w nowej lokalizacji. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
+            "password_not_match": "Hasła nie są takie same",
+            "password_length": "Hasło musi zawierać co najmniej 8 znaków",
+            "password_uppercase": "Hasło musi zawierać co najmniej jedną dużą literę",
+            "password_uppercase_length_not_match": "Hasło musi zawierać co najmniej jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny",
+            "password_change_success": "Hasło zostało zmienione",
+            "email_not_valid": "Email jest niepoprawny",
+            "not_valid_code": "Kod jest niepoprawny",
+            "code_used": "Kod został już wykorzystany",
+            "email_not_valid_no_code": "Niepoprawny kod lub email",
+            "email_occupied": "Email jest już zajęty",
+            "no_valid_data": "Błąd odczytu danych"
+        }
+    },
+    "quiz":{
+        "offline": "Brak połączenia z internetem",
+        "online": "Połączono z internetem",
+        "select_quiz":{
+            "text": "Wybierz przedmiot",
+            "question_no_amount": "Brak danych do wyświetlenia",
+            "number_of_questions": "Ilość pytań",
+            "question_text": "pytań",
+            "start_quiz": "Wyświetl quiz",
+            "load_quiz": "Ładowanie...",
+            "szukaj": "Szukaj",
+            "term": "Semestr",
+            "analytic_title": "Przewydywany stopień wiedzy",
+            "score_title": "Aktualny Wynik",
+            "correct": "Nauczone",
+            "incorrect": "Nienauczone",
+            "halfcorrect": "W trakcie nauki"
+        },
+        "report":{
+            "title_send": "Zgłoś",
+            "title_decline": "Anuluj zgłoszenie",
+            "text": "Zaznacz możliwą prawidłową odpowiedź",
+            "button": "Wyślij zgłoszenie",
+            "report_sent": "Zgłoszenie zostało wysłane",
+            "already_reported": "Ktoś zgłosił już to pytanie",
+            "report_error": "Błąd"
+        },
+        "settings":{
+            "text": "Ustawienia",
+            "sort_title": "Ustawienia pytań",
+            "sort_text": "Kolejność wyświetlania pytań",
+            "sort_option_random": "Losowo",
+            "sort_option_numeric": "Numerycznie",
+            "algorithm_title": "Analiza (beta)",
+            "algorithm_text": "Możliwość analizowania przebiegu nauki w celu dopasowania pytań. Wymagana opcja losowej kolejności pytań",
+            "term_title": "Dostęp do semestrów",
+            "term_text": "W celu uzyskania dostępu do innych semestrów skontaktuj się z administratorem.",
+            "code_title": "Twój kod aktywacyjny"
+        },
+        "notification":{
+            "empty": "Brak powiadomień",
+            "clear": "Wyczyść powiadomienia"
+        },
+        "stats":{
+            "table":{
+                "empty": "Brak wyników",
+                "subject": "Przedmiot",
+                "score": "Wynik",
+                "date": "Data",
+                "time": "Czas",
+                "stats_title": "Statystyki",
+                "stats_text": "Wyświetl",
+                "stats_text_unavailable": "Niedostępne"
+            },
+            "specific":{
+                "title": "Rozkład odpowiedzi z przedmiotu",
+                "sub_title": "Przegląd ogólny",
+                "all_answers": "Łączna ilość odpowiedzi",
+                "avg_time": "Średni czas",
+                "avg_score": "Średni wynik",
+                "specific_title": "Przegląd testu z dnia",
+                "score": "Wynik",
+                "time": "Czas",
+                "answers": {
+                    "correct": "Poprawne",
+                    "incorrect": "Niepoprawne",
+                    "halfcorrect": "Pół poprawne",
+                    "skipped": "Pominięte"
+                },
+                "sort":{
+                    "all": "Wszystkie pytania",
+                    "correct": "Poprawne pytania",
+                    "incorrect": "Niepoprawne pytania",
+                    "halfcorrect": "Pół poprawne pytania",
+                    "skipped": "Pominięte pytania"
+                }
+            }
+        }
+    },
+    "notification":{
+        "block_user_title": "Blokada konta",
+        "block_user_text": "Twoje konto zostało zablokowane.",
+        "unblock_user_text": "Twoje konto zostało pozbawione blokady. Następnym razem prosmi o rozwagę.",
+        "register_title": "Rejestracja",
+        "register_text": "Konto zostało pomyślnie utworzone.",
+        "change_password_title": "Zmiana hasła",
+        "change_password_text": "Twoje hasło zostało zmienione.",
+        "share_title": "Dodaliśmy nową bazę pytań",
+        "share_text": "Udostępniliśmy nową bazę pytań z przedmiotu:",
+        "report_title": "Zgłoszone pytanie",
+        "report_text_subject": "z przedmiotu",
+        "reported_text": "Ktoś zgłosił już pytanie o numerze",
+        "report_text": "Twoje pytanie o numerze",
+        "report_text_success": "zostało zgłoszone",
+        "reset_device_title": "Lista urządzeń",
+        "reset_device_text": "Twoja lista dostępnych urządzeń dla konta została zresetowana.",
+        "save_score_title": "Zapisano nowy wynik",
+        "save_score_text_sub_1": "Twój wynik",
+        "save_score_text_sub_2": "z przedmiotu",
+        "save_score_text_sub_3": "został zapisany.",
+        "save_score_error": "Wynik nie został zapisany",
+        "term_access_title": "Dostęp do semestrów",
+        "term_access_text": "Na twoim koncie został zmieniony dostęp do semestrów.<br/>Aktualnie dostępne semestry:"
+    },
+    "admin":{
+        "main":{
+            "users":{
+                "title": "Użytkownicy",
+                "all": "Wszyscy",
+                "online": "Aktywni",
+                "offline": "Nieaktywni"
+            },
+            "questions":{
+                "title": "Pytania",
+                "subjects": "Przedmioty",
+                "reports": "Zgłoszenia",
+                "questions": "Pytania"
+            },
+            "logs":{
+                "title": "Logi",
+                "select": "Wybierz datę logów",
+                "no_permission": "Brak uprawnień do wyświetlenia logów"
+            },
+            "subjects":{
+                "all": "Wszystkie",
+                "subject": "Przedmiot",
+                "term": "Semestr",
+                "shared": "Udostępniony",
+                "views": "Ilość wywołań",
+                "questions": "Ilość pytań"
+            },
+            "chart":{
+                "all": "Wszystkie punkty",
+                "text": "punktów",
+                "term": "Semestr"
+            }
+        },
+        "reports":{
+            "no_reports": "Brak zgłoszeń",
+            "update": {
+                "button": "Aktualizuj",
+                "success": "Pytanie zostało zaktualizowane",
+                "error": "Błąd aktualizacji pytania",
+                "error_no_variable": "Brak wszystkich danych do aktualizacji pytania"
+            },
+            "decline": {
+                "button": "Odrzuć",
+                "success": "Zgłoszenie zostało usunięte",
+                "error": "Błąd usuwania zgłoszenia",
+                "error_no_variable": "Brak wszystkich danych do usunięcia zgłoszenia"
+            },
+            "remove": {
+                "button": "Usuń",
+                "confirm": "Czy na pewno chcesz usunąć to pytanie?",
+                "confirm_yes": "Tak",
+                "confirm_no": "Nie",
+                "success": "Pytanie zostało usunięte",
+                "error": "Błąd usuwania pytania",
+                "error_no_variable": "Brak wszystkich danych do usunięcia pytania"
+            },
+            "copy":{
+                "success": "Pytanie zostało skopiowane",
+                "error": "Błąd kopiowania pytania"
+            }
+        },
+        "menage":{
+            "quiz_add":{
+                "title": "Dodaj quiz",
+                "subject": "Podaj nazwę przedmiotu",
+                "subject_placeholder": "Nazwa przedmiotu",
+                "separator": "Podaj separator poprawnych pytań",
+                "separator_placeholder": "Separator",
+                "term": "Podaj numer semestru",
+                "term_placeholder": "Semestr",
+                "file": "Prześlij plik z pytaniami",
+                "file_placeholder": "Wybierz plik",
+                "file_placeholder_success": "Wybrano plik",
+                "file_extension": "Dozwolone rozszerzenia: txt",
+                "no_extension": "Nie udało się wykryć kodowania pliku.",
+                "no_file": "Nie wybrano pliku",
+                "no_subject": "Nie podano nazwy przedmiotu",
+                "no_separator": "Nie podano separatora",
+                "no_term": "Nie podano semestru",
+                "image_alt_text": "Obrazek do pytania",
+                "success_1": "Dodano pytania z semestru",
+                "success_2": "do przedmiotu"
+            },
+            "quiz_add_more":{
+                "title": "Dodaj więcej pytań",
+                "subject": "Wybierz przedmiot",
+                "separator": "Podaj separator poprawnych pytań",
+                "separator_placeholder": "Separator",
+                "file": "Prześlij plik z pytaniami",
+                "success": "Dodano pytania do przedmiotu",
+                "error_analytic": "Błąd aktualizacji analityki"
+            },
+            "quiz_status":{
+                "title": "Zmień status",
+                "subject": "Wybierz przedmiot",
+                "share": "Zmień status na",
+                "public_notification": "Publiczny z powiadomieniami",
+                "public_no_notification": "Publiczny bez powiadomień",
+                "private": "Prywatny",
+                "no_share": "Nie wybrano statusu",
+                "no_subject":"Nie podano nazwy przedmiotu",
+                "error_share": "Błąd zmiany statusu",
+                "success_no_notification": "Status został zmieniony na publiczny bez wysyłania powiadomień",
+                "success_notification": "Status został zmieniony na publiczny z wysyłaniem powiadomień",
+                "success_private": "Status został zmieniony na prywatny"
+            },
+            "quiz_download":{
+                "title": "Pobierz quiz",
+                "subject": "Wybierz przedmiot",
+                "format": "Wybierz format pliku",
+                "format_text": "Format pliku",
+                "separator": "Podaj separator poprawnych pytań",
+                "separator_placeholder": "Separator",
+                "separator_placeholder_disabled": "Brak separatora dla tego formatu",
+                "separator_placeholder_not_needed": "Separator nie jest wymagany",
+                "signed_type": "Wybierz oznaczenie przepisania",
+                "signed_type_text": "Oznaczenie przepisania",
+                "signed_type_correct": "Tylko poprawne odpowiedzi",
+                "signed_type_all_with": "Wszystkie odpowiedzi z separatorami poprawności",
+                "signed_type_all_without": "Wszystkie odpowiedzi bez separatorów poprawności",
+                "no_subject": "Nie wybrano przedmiotu",
+                "no_format": "Nie wybrano formatu pliku",
+                "no_separator": "Nie podano separatora",
+                "no_signed_type": "Nie wybrano oznaczenia przepisania",
+                "success": "Plik jest gotowy do pobrania"
+            },
+            "quiz_delete":{
+                "title": "Usuń quiz",
+                "subject":"Wybierz przedmiot",
+                "no_subject":"Nie wybrano przedmiotu",
+                "confirm": "Czy na pewno chcesz usunąć przedmiot?",
+                "confirm_yes": "Tak",
+                "confirm_no": "Nie",
+                "success": "Przedmiot został usunięty",
+                "error": "Błąd usuwania przedmiotu"
+            },
+            "quiz_rename":{
+                "title": "Zmień nazwę quizu",
+                "subject": "Wybierz przedmiot",
+                "subject_name": "Podaj nową nazwę przedmiotu",
+                "subject_placeholder": "Nazwa przedmiotu",
+                "no_subject": "Nie wybrano przedmiotu",
+                "no_name": "Nie podano nazwy przedmiotu",
+                "name_exists": "Podana nazwa jest taka sama jak innego przedmiotu",
+                "success": "Nazwa przedmiotu została zmieniona",
+                "error": "Błąd zmiany nazwy przedmiotu"
+            },
+            "quiz_moderation":{
+                "title": "Moderatorzy",
+                "add_remove": "Dodaj lub usuń moderatora",
+                "add": "Dodaj",
+                "remove": "Usuń",
+                "users": "Wybierz użytkownika",
+                "no_add_remove": "Nie wybrano akcji",
+                "no_user": "Nie wybrano użytkownika",
+                "no_users": "Brak użytkowników",
+                "success_add": "Użytkownik został dodany do listy moderatorów",
+                "error_add": "Błąd dodawania użytkownika do listy moderatorów",
+                "success_remove": "Użytkownik został usunięty z listy moderatorów",
+                "error_remove": "Błąd usuwania użytkownika z listy moderatorów"
+            },
+            "quiz_code":{
+                "list":{
+                    "title": "Lista niewykorzystanych kodów",
+                    "code": "Wybierz kod do usunięcia",
+                    "no_code": "Brak kodów",
+                    "success": "Kod został usunięty",
+                    "error": "Błąd usuwania kodu",
+                    "error_list": "Błąd pobierania listy kodów"
+                },
+                "add":{
+                    "title": "Dodaj kod",
+                    "term": "Podaj numer semestru",
+                    "term_placeholder": "Numer semestru (0,0,0...)",
+                    "no_term": "Nie podano numeru semestru",
+                    "count": "Podaj ilość kodów",
+                    "count_placeholder": "Ilość kodów",
+                    "no_count": "Nie podano ilości kodów",
+                    "success": "Kody zostały dodane",
+                    "error": "Błąd dodawania kodów"
+                },
+                "remove":{
+                    "title": "Usuń kod"
+                }
+            },
+            "quiz_analytic":{
+                "title": "Zmień punktację analizy",
+                "random": "Losuj dane",
+                "text_correct": "Ilość punktów za poprawną odpowiedź",
+                "text_correct_placeholder": "Poprawna odpowiedź",
+                "text_incorrect": "Ilość punktów za niepoprawną odpowiedź",
+                "text_incorrect_placeholder": "Niepoprawna odpowiedź",
+                "text_halfcorrect": "Ilość punktów za pół poprawną odpowiedź",
+                "text_halfcorrect_placeholder": "Pół poprawna odpowiedź",
+                "success": "Punktacja została zmieniona",
+                "error": "Błąd zmiany punktacji",
+                "showcase":{
+                    "correct": "Poprawne",
+                    "incorrect": "Niepoprawne",
+                    "halfcorrect": "Pół poprawne",
+                    "checked": "Zaznaczone",
+                    "maxchecked": "Max zaznaczone",
+                    "count": "Ilość",
+                    "points": "pkt.",
+                    "overflow": "Brak dostępnych danych"
+                }
+            }
+        },
+        "users":{
+            "text": "Wszyscy użytkownicy",
+            "search_placeholder": "Wyszukaj użytkownika",
+            "devices_text": "Urządzenia",
+            "analytic_chart_label": "Wykres średnich wyników (45 dni)",
+            "limit":{
+                "title":"Limit urządzeń",
+                "text_device": "Podaj limit urządzeń dla użytkownika",
+                "text_location": "Podaj limit lokalizacji dla użytkownika",
+                "confirm_yes": "Zmień",
+                "confirm_no": "Anuluj",
+                "success": "Limity zostały zmienione",
+                "error": "Błąd zmiany limitów"
+            },
+            "reset":{
+                "all_devices":{
+                    "title": "Zresetuj urządzenia",
+                    "confirm": "Czy na pewno chcesz zresetować wszystkie urządzenia?",
+                    "confirm_yes": "Tak",
+                    "confirm_no": "Nie",
+                    "success": "Urządzenia użytkowników zostały usunięte",
+                    "error": "Błąd usuwania urządzeń użytkowników"
+                },
+                "device":{
+                    "success": "Urządzenie zostało usunięte",
+                    "error": "Błąd usuwania urządzenia"
+                },
+                "devices":{
+                    "success": "Lista urządzeń została zresetowana",
+                    "error": "Błąd resetowania listy urządzeń"
+                }
+            },
+            "notification":{
+                "all_users": {
+                    "title": "Wyślij powiadomienia",
+                    "title_box": "Tytuł powiadomienia",
+                    "text_box": "Treść powiadomienia",
+                    "confirm": "Czy na pewno chcesz wysłać powiadomienia do wszystkich użytkowników?",
+                    "confirm_yes": "Tak",
+                    "confirm_no": "Nie",
+                    "success": "Powiadomienia zostały wysłane do wszystkich",
+                    "error": "Błąd wysyłania powiadomień"
+                },
+                "user":{
+                    "title": "Wyślij powiadomienie",
+                    "title_box": "Tytuł powiadomienia",
+                    "text_box": "Treść powiadomienia",
+                    "confirm": "Czy na pewno chcesz wysłać powiadomienie?",
+                    "confirm_yes": "Tak",
+                    "confirm_no": "Nie",
+                    "success": "Powiadomienie zostało wysłane",
+                    "error": "Błąd wysyłania powiadomienia"
+                }
+            },
+            "block":{
+                "text": "Zablokuj",
+                "success": "Konto zostało zablokowane",
+                "error": "Błąd blokowania konta",
+                "mod_text": "Moderator nie może zablokować konta"
+            },
+            "unblock":{
+                "text": "Odblokuj",
+                "success": "Konto zostało odblokowane",
+                "error": "Błąd odblokowania konta",
+                "mod_text": "Moderator nie może zablokować konta"
+            },
+            "term":{
+                "text": "Semestry",
+                "success": "Zaktualizowano dostęp do semestrów",
+                "error": "Nie udało się zaktualizować dostępu do semestrów",
+                "mod_text": "Moderator nie może zablokować konta"
+            },
+            "score":{
+                "subject": "Przedmiot",
+                "score": "Wynik",
+                "date": "Data",
+                "time": "Czas"
+            }
+        }
+    },
+    "database":{
+        "error": "Błąd bazy danych"
+    },
+    "logs":{
+        "login":{
+            "title": "Logowanie",
+            "account_blocked": "Próba logowania na zablokowane konto",
+            "user_login": "Zalogowano na konto",
+            "incorrect_login": "Nieprawidłowa próba logowania"
+        },
+        "logout":{
+            "title": "Wylogowanie",
+            "user_logout": "Wylogowano z konta",
+            "user_auto_logout": "Automatyczne wylogowanie z konta"
+        },
+        "register":{
+            "title": "Rejestrowanie",
+            "same_email": "Próba rejestracji na zajęty email",
+            "no_code": "Próba rejestracji bez kodu aktywacyjnego",
+            "same_code": "Próba rejestracji na zajęty kod",
+            "success": "Rejestrowanie zakończone sukcesem"
+        },
+        "change_password":{
+            "title": "Zmiana hasła",
+            "emailnocode": "Niepoprawny email lub kod aktywacyjny",
+            "error": "Błąd zmiany hasła",
+            "success": "Zmiana hasła zakończona sukcesem"
+        },
+        "database":{
+            "title": "Baza danych",
+            "error": "Błąd bazy danych"
+        },
+        "darkmode":{
+            "title": "Motyw",
+            "success": "Próba zmiany motywu zakończona sukcesem",
+            "error": "Próba zmiany motywu zakończona błędem"
+        },
+        "report":{
+            "title": "Zgłoszenie",
+            "already_reported": "Próba zgłoszenia już zgłoszonego pytania",
+            "already_reported_error": "Próba zgłoszenia już zgłoszonego pytania z błędem powiadomienia",
+            "sent_success": "Próba zgłoszenia pytania zakończona sukcesem",
+            "sent_error": "Próba zgłoszenia pytania zakończona sukcesem z błędem powiadomienia",
+            "error": "Próba zgłoszenia pytania zakończona błędem"
+        },
+        "notification":{
+            "title": "Powiadomienia",
+            "all_success": "Próba usunięcia wszystkich powiadomień zakończona sukcesem",
+            "all_error": "Próba usunięcia wszystkich powiadomień zakończona błędem",
+            "one_success": "Próba usunięcia powiadomienia zakończona sukcesem",
+            "one_error": "Próba usunięcia powiadomienia zakończona błędem",
+            "by_admin": "przez admina dla użytkownika"
+        },
+        "save_score":{
+            "title": "Zapisywanie wyniku",
+            "save_score": "Próba zapisania wyniku już zapisanego",
+            "nofile": "Próba zapisania wyniku bez pliku",
+            "error": "Próba zapisania wyniku zakończona błędem",
+            "analytic_error": "Próba zapisania wyniku zakończona sukcesem z błędem aktualizacji analityki",
+            "nonotification": "Próba zapisania wyniku zakończona sukcesem z błędem powiadomienia",
+            "success": "Próba zapisania wyniku zakończona sukcesem"
+        },
+        "show_quiz":{
+            "title": "Wyświetlanie quizu",
+            "analytic": "Próba wyświetlenia quizu z błędem aktualizacji analityki",
+            "no_analytic_file": "Próba wyświetlenia quizu bez pliku analityki",
+            "no_analytic_points": "Próba wyświetlenia quizu bez punktów analityki",
+            "error": "Próba wyświetlenia quizu zakończona błędem",
+            "one_to_one_success": "Próba wyświetlenia quizu zakończona sukcesem (1+)",
+            "success": "Próba wyświetlenia quizu zakończona sukcesem"
+        },
+        "settings":{
+            "title": "Ustawienia",
+            "question_order_success": "Próba zmiany ustawień pytań zakończona sukcesem",
+            "question_order_error": "Próba zmiany ustawień pytań zakończona błędem",
+            "question_analytic_success": "Próba zmiany ustawień analityki zakończona sukcesem",
+            "question_analytic_error": "Próba zmiany ustawień analityki zakończona błędem"
+        },
+        "block_user":{
+            "title": "(Administrator) Blokada konta",
+            "block_success": "Próba zablokowania konta zakończona sukcesem",
+            "block_error": "Próba zablokowania konta zakończona błędem",
+            "unblock_success": "Próba odblokowania konta zakończona sukcesem",
+            "unblock_error": "Próba odblokowania konta zakończona błędem"
+        },
+        "reports":{
+            "title": "(Administrator) Zgłoszenia",
+            "update_success": "Próba aktualizacji pytania zakończona sukcesem",
+            "update_error": "Próba aktualizacji pytania zakończona błędem",
+            "decline_success": "Próba usunięcia zgłoszenia zakończona sukcesem",
+            "decline_error": "Próba usunięcia zgłoszenia zakończona błędem",
+            "remove_success": "Próba usunięcia pytania zakończona sukcesem",
+            "remove_error": "Próba usunięcia pytania zakończona błędem",
+            "remove":{
+                "delete": "usuwanie pytania",
+                "report": "usuwanie zgłoszenia",
+                "update_reports": "aktualizacja pytań w zgłoszeniach",
+                "update_analytic": "aktualizacja analityki",
+                "update_ids": "aktualizacja id pytań",
+                "update_scores": "aktualizacja wyników"
+            },
+            "reload_success": "Próba odświeżenia pytania zakończona sukcesem",
+            "reload_error": "Próba odświeżenia pytania zakończona błędem"
+        },
+        "device_limit":{
+            "title": "(Administrator) Limit urządzeń",
+            "success": "Próba zmiany limitów zakończona sukcesem",
+            "error": "Próba zmiany limitów zakończona błędem"
+        },
+        "term":{
+            "title": "(Administrator) Dostęp do semestrów",
+            "success": "Próba zmiany dostępu do semestrów zakończona sukcesem",
+            "error": "Próba zmiany dostępu do semestrów zakończona błędem"
+        },
+        "quiz_add":{
+            "title": "(Administrator) Dodawanie quizu",
+            "no_subject": "Próba dodania quizu bez nazwy przedmiotu",
+            "no_separator": "Próba dodania quizu bez separatora",
+            "no_file": "Próba dodania quizu bez pliku",
+            "no_extension": "Próba dodania quizu z niepoprawnym rozszerzeniem pliku",
+            "success_more": "Próba dodania pytań do przedmiotu zakończona sukcesem",
+            "success": "Próba dodania przedmiotu zakończona sukcesem",
+            "error": "Próba dodania przedmiotu zakończona błędem",
+            "error_more_analytic": "Próba dodania pytań do przedmiotu zakończona sukcesem z błędem aktualizacji analityki"
+        },
+        "quiz_analytic":{
+            "title": "(Administrator) Punktacja analityki",
+            "success": "Próba zmiany punktacji zakończona sukcesem",
+            "error": "Próba zmiany punktacji zakończona błędem"
+        },
+        "quiz_code":{
+            "title": "(Administrator) Kody aktywacyjne",
+            "no_term": "Próba dodania kodów bez numeru semestru",
+            "no_count": "Próba dodania kodów bez ilości kodów",
+            "success_add": "Próba dodania kodów zakończona sukcesem",
+            "error_add": "Próba dodania kodów zakończona błędem",
+            "success_remove": "Próba usunięcia kodu zakończona sukcesem",
+            "error_remove": "Próba usunięcia kodu zakończona błędem"
+        },
+        "quiz_delete":{
+            "title": "(Administrator) Usuwanie quizu",
+            "no_subject": "Próba usunięcia quizu bez nazwy przedmiotu",
+            "delete":{
+                "subject": "usuwanie przedmiotu",
+                "reports": "usuwanie zgłoszeń",
+                "scores": "usuwanie wyników",
+                "questions": "usuwanie pytań",
+                "analytic": "usuwanie analityki"
+            },
+            "success": "Próba usunięcia quizu zakończona sukcesem",
+            "error": "Próba usunięcia quizu zakończona błędem"
+        },
+        "quiz_download":{
+            "title": "(Administrator) Pobieranie quizu",
+            "no_subject": "Próba pobrania quizu bez nazwy przedmiotu",
+            "no_format": "Próba pobrania quizu bez formatu pliku",
+            "no_separator": "Próba pobrania quizu bez separatora",
+            "no_signed_type": "Próba pobrania quizu bez oznaczenia przepisania",
+            "success": "Próba pobrania quizu zakończona sukcesem",
+            "error": "Próba pobrania quizu zakończona błędem"
+        },
+        "quiz_moderation":{
+            "title": "(Administrator) Moderatorzy",
+            "no_user": "Próba dodania moderatora bez użytkownika",
+            "no_add_remove": "Próba dodania moderatora bez akcji",
+            "success_add": "Próba dodania moderatora zakończona sukcesem",
+            "error_add": "Próba dodania moderatora zakończona błędem",
+            "success_remove": "Próba usunięcia moderatora zakończona sukcesem",
+            "error_remove": "Próba usunięcia moderatora zakończona błędem"
+        },
+        "quiz_rename":{
+            "title": "(Administrator) Zmiana nazwy quizu",
+            "no_subject": "Próba zmiany nazwy quizu bez nazwy przedmiotu",
+            "no_name": "Próba zmiany nazwy quizu bez nowej nazwy przedmiotu",
+            "name_exists": "Próba zmiany nazwy quizu na zajętą nazwę przedmiotu",
+            "rename":{
+                "subject": "zmiana nazwy przedmiotu",
+                "questions": "zmiana nazwy przedmiotu w pytaniach",
+                "reports": "zmiana nazwy przedmiotu w zgłoszeniach",
+                "scores": "zmiana nazwy przedmiotu w wynikach",
+                "analytic": "zmiana nazwy przedmiotu w analityce"
+            },
+            "success": "Próba zmiany nazwy quizu zakończona sukcesem",
+            "error": "Próba zmiany nazwy quizu zakończona błędem"
+        },
+        "quiz_status":{
+            "title": "(Administrator) Status quizu",
+            "no_subject": "Próba zmiany statusu quizu bez nazwy przedmiotu",
+            "no_share": "Próba zmiany statusu quizu bez statusu",
+            "status":{
+                "subject": "zmiana statusu przedmiotu",
+                "questions": "zmiana statusu przedmiotu w pytaniach",
+                "reports": "zmiana statusu przedmiotu w zgłoszeniach",
+                "scores": "zmiana statusu przedmiotu w wynikach",
+                "analytic": "zmiana statusu przedmiotu w analityce"
+            },
+            "success_no_notification": "Próba zmiany statusu quizu zakończona sukcesem (publiczny bez powiadomień)",
+            "success_notification": "Próba zmiany statusu quizu zakończona sukcesem (publiczny z powiadomieniami)",
+            "success_private": "Próba zmiany statusu quizu zakończona sukcesem (prywatny)",
+            "error": "Próba zmiany statusu quizu zakończona błędem"
+        },
+        "reset":{
+            "title": "(Administrator) Resetowanie urządzeń",
+            "device":{
+                "success": "Próba usunięcia urządzenia zakończona sukcesem",
+                "error": "Próba usunięcia urządzenia zakończona błędem"
+            },
+            "devices":{
+                "success": "Próba zresetowania listy urządzeń zakończona sukcesem",
+                "error": "Próba zresetowania listy urządzeń zakończona błędem"
+            },
+            "all_devices":{
+                "success": "Próba zresetowania wszystkich urządzeń zakończona sukcesem",
+                "error": "Próba zresetowania wszystkich urządzeń zakończona błędem"
+            }
+        },
+        "send_notification":{
+            "title": "(Administrator) Wysyłanie powiadomień",
+            "error": "Próba wysłania powiadomienia zakończona błędem",
+            "all_users":{
+                "success": "Próba wysłania powiadomień do wszystkich użytkowników zakończona sukcesem",
+                "error": "Próba wysłania powiadomień do wszystkich użytkowników zakończona błędem"
+            },
+            "user":{
+                "success": "Próba wysłania powiadomienia zakończona sukcesem",
+                "error": "Próba wysłania powiadomienia zakończona błędem"
+            }
+        }
+    }
+}

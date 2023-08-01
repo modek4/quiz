@@ -1,0 +1,680 @@
+{
+    "language": "en",
+    "login": {
+        "login_nav_text": "Log in",
+        "register_nav_text": "Register",
+        "faq_nav_text": "FAQ",
+        "reset_password_nav_text": "Reset Password",
+        "login_menu": {
+            "login_text": "Log in",
+            "email": "Email",
+            "password": "Password",
+            "forgot_password": "Forgot password?"
+        },
+        "reset_password": {
+            "reset_password_text": "Change Password",
+            "email": "Email",
+            "activate_code": "Activation Code",
+            "new_password": "New Password",
+            "repeat_password": "Repeat Password"
+        },
+        "register_menu": {
+            "register_text": "Register",
+            "email": "Email",
+            "password": "Password",
+            "repeat_password": "Repeat Password",
+            "activate_code": "Activation Code",
+            "register_sub_text": "To obtain an activation code, please contact the administrator."
+        },
+        "faq": {
+            "about": "What is this page about?",
+            "about_text": "This is a website offering quizzes to users in exchange for a fee.",
+            "how_it_works": "How does this page work?",
+            "how_it_works_text": "Users make payments to access quizzes and can then choose from various quizzes available on the website and solve them online.",
+            "where_to_see": "Where can I see what the page looks like?",
+            "where_to_see_text": "The entire code of the page with the description of the operation is available on github: ",
+            "access": "How to access the website?",
+            "access_text": "Contact the administrator or owner to gain access to the website."
+        },
+        "texts": {
+            "incorrect_password": "Invalid email or password!",
+            "account_blocked": "Your account has been blocked. Please contact the administrator.",
+            "new_login_notification": "New login",
+            "new_login_new_phone_notification_text": "We detected a login to your account from a new device. Remember not to share your account data with anyone!",
+            "new_login_phone_notification_text": "We detected a login to your account in a new location. Remember not to share your account data with anyone!",
+            "new_login_device_notification_text": "We detected a login to your account from a device in a new location. Remember not to share your account data with anyone!",
+            "password_not_match": "Passwords do not match",
+            "password_length": "Password must contain at least 8 characters",
+            "password_uppercase": "Password must contain at least one uppercase letter",
+            "password_uppercase_length_not_match": "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character",
+            "password_change_success": "Password has been changed",
+            "email_not_valid": "Invalid email",
+            "not_valid_code": "Invalid code",
+            "code_used": "Code has already been used",
+            "email_not_valid_no_code": "Invalid code or email",
+            "email_occupied": "Email is already in use",
+            "no_valid_data": "Error reading data"
+        }
+    },
+    "quiz": {
+        "offline": "No internet connection",
+        "online": "Connected to the internet",
+        "select_quiz": {
+            "text": "Select subject",
+            "question_no_amount": "No data to display",
+            "number_of_questions": "Number of questions",
+            "question_text": "questions",
+            "start_quiz": "Start Quiz",
+            "load_quiz": "Loading...",
+            "szukaj": "Search",
+            "term": "Semester",
+            "analytic_title": "Predicted level of knowledge",
+            "score_title": "Current Score",
+            "correct": "Learned",
+            "incorrect": "Not Learned",
+            "halfcorrect": "In Progress"
+        },
+        "report": {
+            "title_send": "Report",
+            "title_decline": "Cancel report",
+            "text": "Select the possible correct answer",
+            "button": "Send Report",
+            "report_sent": "The report has been sent",
+            "already_reported": "Someone has already reported this question",
+            "report_error": "Error"
+        },
+        "settings": {
+            "text": "Settings",
+            "sort_title": "Question Settings",
+            "sort_text": "Order of displaying questions",
+            "sort_option_random": "Random",
+            "sort_option_numeric": "Numeric",
+            "algorithm_title": "Analysis (beta)",
+            "algorithm_text": "Possibility to analyze the learning progress to match questions. Random question order option required",
+            "term_title": "Access to Semesters",
+            "term_text": "To access other semesters, contact the administrator.",
+            "code_title": "Your Activation Code"
+        },
+        "notification": {
+            "empty": "No notifications",
+            "clear": "Clear notifications"
+        },
+        "stats": {
+            "table": {
+                "empty": "No results",
+                "subject": "Subject",
+                "score": "Score",
+                "date": "Date",
+                "time": "Time",
+                "stats_title": "Statistics",
+                "stats_text": "Display",
+                "stats_text_unavailable": "Unavailable"
+            },
+            "specific": {
+                "title": "Answer Distribution for Subject",
+                "sub_title": "Overview",
+                "all_answers": "Total Answers",
+                "avg_time": "Average Time",
+                "avg_score": "Average Score",
+                "specific_title": "Test Overview from",
+                "score": "Score",
+                "time": "Time",
+                "answers": {
+                    "correct": "Correct",
+                    "incorrect": "Incorrect",
+                    "halfcorrect": "Partially Correct",
+                    "skipped": "Skipped"
+                },
+                "sort": {
+                    "all": "All Questions",
+                    "correct": "Correct Questions",
+                    "incorrect": "Incorrect Questions",
+                    "halfcorrect": "Partially Correct Questions",
+                    "skipped": "Skipped Questions"
+                }
+            }
+        }
+    },
+    "notification": {
+        "block_user_title": "Account Blocked",
+        "block_user_text": "Your account has been blocked.",
+        "unblock_user_text": "Your account has been unblocked. Please be more careful next time.",
+        "register_title": "Registration",
+        "register_text": "Account successfully created.",
+        "change_password_title": "Password Change",
+        "change_password_text": "Your password has been changed.",
+        "share_title": "New Question Database Added",
+        "share_text": "We have shared a new question database for the subject:",
+        "report_title": "Reported Question",
+        "report_text_subject": "from the subject",
+        "reported_text": "Someone has already reported a question with number",
+        "report_text": "Your question with number",
+        "report_text_success": "has been reported",
+        "reset_device_title": "Device List Reset",
+        "reset_device_text": "Your list of available devices for the account has been reset.",
+        "save_score_title": "New Score Saved",
+        "save_score_text_sub_1": "Your score",
+        "save_score_text_sub_2": "from the subject",
+        "save_score_text_sub_3": "has been saved.",
+        "save_score_error": "Score was not saved",
+        "term_access_title": "Access to Semesters",
+        "term_access_text": "Access to semesters on your account has been changed.<br/>Currently available semesters:"
+    },
+    "admin": {
+        "main": {
+            "users": {
+                "title": "Users",
+                "all": "All",
+                "online": "Online",
+                "offline": "Offline"
+            },
+            "questions": {
+                "title": "Questions",
+                "subjects": "Subjects",
+                "reports": "Reports",
+                "questions": "Questions"
+            },
+            "logs": {
+                "title": "Logs",
+                "select": "Select log date",
+                "no_permission": "No permissions to view logs"
+            },
+            "subjects": {
+                "all": "All",
+                "subject": "Subject",
+                "term": "Semester",
+                "shared": "Shared",
+                "views": "Number of Views",
+                "questions": "Number of Questions"
+            },
+            "chart": {
+                "all": "All points",
+                "text": "points",
+                "term": "Semester"
+            }
+        },
+        "reports": {
+            "no_reports": "No reports",
+            "update": {
+                "button": "Update",
+                "success": "Question has been updated",
+                "error": "Error updating the question",
+                "error_no_variable": "Not all data available to update the question"
+            },
+            "decline": {
+                "button": "Decline",
+                "success": "Report has been deleted",
+                "error": "Error deleting the report",
+                "error_no_variable": "Not all data available to delete the report"
+            },
+            "remove": {
+                "button": "Remove",
+                "confirm": "Are you sure about removing this question?",
+                "confirm_yes": "Yes",
+                "confirm_no": "No",
+                "success": "Question has been removed",
+                "error": "Error removing the question",
+                "error_no_variable": "Not all data available to remove the question"
+            },
+            "copy": {
+                "success": "Question has been copied",
+                "error": "Error copying the question"
+            }
+        },
+        "menage": {
+            "quiz_add": {
+                "title": "Add Quiz",
+                "subject": "Enter Subject Name",
+                "subject_placeholder": "Subject Name",
+                "separator": "Enter Correct Answers Separator",
+                "separator_placeholder": "Separator",
+                "term": "Enter Semester Number",
+                "term_placeholder": "Semester",
+                "file": "Upload File with Questions",
+                "file_placeholder": "Select File",
+                "file_placeholder_success": "File Selected",
+                "file_extension": "Allowed extensions: txt",
+                "no_extension": "Failed to detect file encoding.",
+                "no_file": "No file selected",
+                "no_subject": "Subject name not provided",
+                "no_separator": "Separator not provided",
+                "no_term": "Semester number not provided",
+                "image_alt_text": "Question Image",
+                "success_1": "Added questions from semester",
+                "success_2": "to subject"
+            },
+            "quiz_add_more": {
+                "title": "Add More Questions",
+                "subject": "Select Subject",
+                "separator": "Enter Correct Answers Separator",
+                "separator_placeholder": "Separator",
+                "file": "Upload File with Questions",
+                "success": "Added questions to the subject",
+                "error_analytic": "Error updating analytics"
+            },
+            "quiz_status": {
+                "title": "Change Status",
+                "subject": "Select Subject",
+                "share": "Change status to",
+                "public_notification": "Public with notifications",
+                "public_no_notification": "Public without notifications",
+                "private": "Private",
+                "no_share": "No status selected",
+                "no_subject": "Subject not selected",
+                "error_share": "Error changing status",
+                "success_no_notification": "Status changed to public without sending notifications",
+                "success_notification": "Status changed to public with sending notifications",
+                "success_private": "Status changed to private"
+            },
+            "quiz_download": {
+                "title": "Download Quiz",
+                "subject": "Select Subject",
+                "format": "Select File Format",
+                "format_text": "File Format",
+                "separator": "Enter Correct Answers Separator",
+                "separator_placeholder": "Separator",
+                "separator_placeholder_disabled": "No separator for this format",
+                "separator_placeholder_not_needed": "Separator not needed",
+                "signed_type": "Select Transcription Mark",
+                "signed_type_text": "Transcription Mark",
+                "signed_type_correct": "Only correct answers",
+                "signed_type_all_with": "All answers with correctness separators",
+                "signed_type_all_without": "All answers without correctness separators",
+                "no_subject": "Subject not selected",
+                "no_format": "File format not selected",
+                "no_separator": "Separator not provided",
+                "no_signed_type": "Transcription mark not selected",
+                "success": "File is ready for download"
+            },
+            "quiz_delete": {
+                "title": "Delete Quiz",
+                "subject": "Select Subject",
+                "no_subject": "Subject not selected",
+                "confirm": "Are you sure you want to delete this subject?",
+                "confirm_yes": "Yes",
+                "confirm_no": "No",
+                "success": "Subject has been deleted",
+                "error": "Error deleting the subject"
+            },
+            "quiz_rename": {
+                "title": "Rename Quiz",
+                "subject": "Select Subject",
+                "subject_name": "Enter New Subject Name",
+                "subject_placeholder": "Subject Name",
+                "no_subject": "Subject not selected",
+                "no_name": "Subject name not provided",
+                "name_exists": "The provided name is the same as another subject's name",
+                "success": "Subject name has been changed",
+                "error": "Error changing the subject name"
+            },
+            "quiz_moderation": {
+                "title": "Moderators",
+                "add_remove": "Add or Remove Moderator",
+                "add": "Add",
+                "remove": "Remove",
+                "users": "Select User",
+                "no_add_remove": "No action selected",
+                "no_user": "User not selected",
+                "no_users": "No users",
+                "success_add": "User has been added to the moderators list",
+                "error_add": "Error adding the user to the moderators list",
+                "success_remove": "User has been removed from the moderators list",
+                "error_remove": "Error removing the user from the moderators list"
+            },
+            "quiz_code": {
+                "list": {
+                    "title": "Unused Codes List",
+                    "code": "Select Code to Delete",
+                    "no_code": "No codes",
+                    "success": "Code has been deleted",
+                    "error": "Error deleting the code",
+                    "error_list": "Error fetching the codes list"
+                },
+                "add": {
+                    "title": "Add Code",
+                    "term": "Enter Semester Number",
+                    "term_placeholder": "Semester Number (0,0,0...)",
+                    "no_term": "Semester number not provided",
+                    "count": "Enter Number of Codes",
+                    "count_placeholder": "Number of Codes",
+                    "no_count": "Number of codes not provided",
+                    "success": "Codes have been added",
+                    "error": "Error adding the codes"
+                },
+                "remove": {
+                    "title": "Remove Code"
+                }
+            },
+            "quiz_analytic": {
+                "title": "Change Analytic Scoring",
+                "random": "Randomize Data",
+                "text_correct": "Score for Correct Answer",
+                "text_correct_placeholder": "Correct Answer",
+                "text_incorrect": "Score for Incorrect Answer",
+                "text_incorrect_placeholder": "Incorrect Answer",
+                "text_halfcorrect": "Score for Half-Correct Answer",
+                "text_halfcorrect_placeholder": "Half-Correct Answer",
+                "success": "Scoring has been changed",
+                "error": "Error changing scoring",
+                "showcase": {
+                    "correct": "Correct",
+                    "incorrect": "Incorrect",
+                    "halfcorrect": "Half-Correct",
+                    "checked": "Checked",
+                    "maxchecked": "Max Checked",
+                    "count": "Count",
+                    "points": "pts.",
+                    "overflow": "No available data"
+                }
+            }
+        },
+        "users": {
+            "text": "All Users",
+            "search_placeholder": "Search for a user",
+            "devices_text": "Devices",
+            "analytic_chart_label": "Average Scores Chart (45 days)",
+            "limit": {
+                "title": "Device Limit",
+                "text_device": "Enter device limit for the user",
+                "text_location": "Enter location limit for the user",
+                "confirm_yes": "Change",
+                "confirm_no": "Cancel",
+                "success": "Limits have been changed",
+                "error": "Error changing limits"
+            },
+            "reset": {
+                "all_devices": {
+                    "title": "Reset Devices",
+                    "confirm": "Are you sure you want to reset all devices?",
+                    "confirm_yes": "Yes",
+                    "confirm_no": "No",
+                    "success": "User devices have been deleted",
+                    "error": "Error deleting user devices"
+                },
+                "device": {
+                    "success": "Device has been deleted",
+                    "error": "Error deleting the device"
+                },
+                "devices": {
+                    "success": "Device list has been reset",
+                    "error": "Error resetting the device list"
+                }
+            },
+            "notification": {
+                "all_users": {
+                    "title": "Send Notifications",
+                    "title_box": "Notification Title",
+                    "text_box": "Notification Text",
+                    "confirm": "Are you sure you want to send notifications to all users?",
+                    "confirm_yes": "Yes",
+                    "confirm_no": "No",
+                    "success": "Notifications have been sent to all users",
+                    "error": "Error sending notifications"
+                },
+                "user": {
+                    "title": "Send Notification",
+                    "title_box": "Notification Title",
+                    "text_box": "Notification Text",
+                    "confirm": "Are you sure you want to send this notification?",
+                    "confirm_yes": "Yes",
+                    "confirm_no": "No",
+                    "success": "Notification has been sent",
+                    "error": "Error sending notification"
+                }
+            },
+            "block": {
+                "text": "Block",
+                "success": "Account has been blocked",
+                "error": "Error blocking the account",
+                "mod_text": "Moderator cannot block the account"
+            },
+            "unblock": {
+                "text": "Unblock",
+                "success": "Account has been unblocked",
+                "error": "Error unblocking the account",
+                "mod_text": "Moderator cannot unblock the account"
+            },
+            "term": {
+                "text": "Semesters",
+                "success": "Semester access has been updated",
+                "error": "Failed to update semester access",
+                "mod_text": "Moderator cannot block the account"
+            },
+            "score": {
+                "subject": "Subject",
+                "score": "Score",
+                "date": "Date",
+                "time": "Time"
+            }
+        }
+    },
+    "database": {
+        "error": "Database error"
+    },
+    "logs": {
+        "login": {
+            "title": "Login",
+            "account_blocked": "Attempted login to a blocked account",
+            "user_login": "Logged in to the account",
+            "incorrect_login": "Login attempt failed"
+        },
+        "logout": {
+            "title": "Logout",
+            "user_logout": "Logged out of the account",
+            "user_auto_logout": "Automatically logged out of the account"
+        },
+        "register": {
+            "title": "Registration",
+            "same_email": "Attempted registration with an existing email",
+            "no_code": "Attempted registration without an activation code",
+            "same_code": "Attempted registration with an existing code",
+            "success": "Registration successful"
+        },
+        "change_password": {
+            "title": "Change Password",
+            "emailnocode": "Invalid email or activation code",
+            "error": "Error changing password",
+            "success": "Password changed successfully"
+        },
+        "database": {
+            "title": "Database",
+            "error": "Database error"
+        },
+        "darkmode": {
+            "title": "Theme",
+            "success": "Theme change successful",
+            "error": "Theme change failed"
+        },
+        "report": {
+            "title": "Report",
+            "already_reported": "Attempted to report an already reported question",
+            "already_reported_error": "Attempted to report an already reported question with a notification error",
+            "sent_success": "Report attempt for the question was successful",
+            "sent_error": "Report attempt for the question was successful with a notification error",
+            "error": "Report attempt for the question failed"
+        },
+        "notification": {
+            "title": "Notifications",
+            "all_success": "Attempt to delete all notifications was successful",
+            "all_error": "Attempt to delete all notifications failed",
+            "one_success": "Attempt to delete the notification was successful",
+            "one_error": "Attempt to delete the notification failed",
+            "by_admin": "by admin for the user"
+        },
+        "save_score": {
+            "title": "Saving Score",
+            "save_score": "Attempted to save an already saved score",
+            "nofile": "Attempted to save a score without a file",
+            "error": "Saving score attempt failed",
+            "analytic_error": "Saving score attempt was successful with an analytic update error",
+            "nonotification": "Saving score attempt was successful with a notification error",
+            "success": "Saving score attempt was successful"
+        },
+        "show_quiz": {
+            "title": "Showing Quiz",
+            "analytic": "Attempt to show the quiz with an analytic update error",
+            "no_analytic_file": "Attempt to show the quiz without analytic file",
+            "no_analytic_points": "Attempt to show the quiz without analytic points",
+            "error": "Showing quiz attempt failed",
+            "one_to_one_success": "Showing quiz attempt was successful (1+)",
+            "success": "Showing quiz attempt was successful"
+        },
+        "settings": {
+            "title": "Settings",
+            "question_order_success": "Attempt to change question order settings was successful",
+            "question_order_error": "Attempt to change question order settings failed",
+            "question_analytic_success": "Attempt to change analytic settings was successful",
+            "question_analytic_error": "Attempt to change analytic settings failed"
+        },
+        "block_user": {
+            "title": "(Administrator) Account Block",
+            "block_success": "Attempt to block the account was successful",
+            "block_error": "Attempt to block the account failed",
+            "unblock_success": "Attempt to unblock the account was successful",
+            "unblock_error": "Attempt to unblock the account failed"
+        },
+        "reports": {
+            "title": "(Administrator) Reports",
+            "update_success": "Attempt to update the question was successful",
+            "update_error": "Attempt to update the question failed",
+            "decline_success": "Attempt to decline the report was successful",
+            "decline_error": "Attempt to decline the report failed",
+            "remove_success": "Attempt to remove the question was successful",
+            "remove_error": "Attempt to remove the question failed",
+            "remove": {
+                "delete": "deleting the question",
+                "report": "deleting the report",
+                "update_reports": "updating questions in reports",
+                "update_analytic": "updating analytics",
+                "update_ids": "updating question IDs",
+                "update_scores": "updating scores"
+            },
+            "reload_success": "Attempt to reload the question was successful",
+            "reload_error": "Attempt to reload the question failed"
+        },
+        "device_limit": {
+            "title": "(Administrator) Device Limit",
+            "success": "Attempt to change the limits was successful",
+            "error": "Attempt to change the limits failed"
+        },
+        "term": {
+            "title": "(Administrator) Semester Access",
+            "success": "Attempt to change semester access was successful",
+            "error": "Attempt to change semester access failed"
+        },
+        "quiz_add": {
+            "title": "(Administrator) Add Quiz",
+            "no_subject": "Attempt to add a quiz without a subject name",
+            "no_separator": "Attempt to add a quiz without a separator",
+            "no_file": "Attempt to add a quiz without a file",
+            "no_extension": "Attempt to add a quiz with an invalid file extension",
+            "success_more": "Attempt to add questions to the subject was successful",
+            "success": "Attempt to add the subject was successful",
+            "error": "Attempt to add the subject failed",
+            "error_more_analytic": "Attempt to add questions to the subject was successful with an analytic update error"
+        },
+        "quiz_analytic": {
+            "title": "(Administrator) Analytic Scoring",
+            "success": "Attempt to change the scoring was successful",
+            "error": "Attempt to change the scoring failed"
+        },
+        "quiz_code": {
+            "title": "(Administrator) Activation Codes",
+            "no_term": "Attempt to add codes without a semester number",
+            "no_count": "Attempt to add codes without the count of codes",
+            "success_add": "Attempt to add codes was successful",
+            "error_add": "Attempt to add codes failed",
+            "success_remove": "Attempt to remove the code was successful",
+            "error_remove": "Attempt to remove the code failed"
+        },
+        "quiz_delete": {
+            "title": "(Administrator) Delete Quiz",
+            "no_subject": "Attempt to delete the quiz without a subject name",
+            "delete": {
+                "subject": "deleting the subject",
+                "reports": "deleting reports",
+                "scores": "deleting scores",
+                "questions": "deleting questions",
+                "analytic": "deleting analytics"
+            },
+            "success": "Attempt to delete the quiz was successful",
+            "error": "Attempt to delete the quiz failed"
+        },
+        "quiz_download": {
+            "title": "(Administrator) Download Quiz",
+            "no_subject": "Attempt to download the quiz without a subject name",
+            "no_format": "Attempt to download the quiz without a file format",
+            "no_separator": "Attempt to download the quiz without a separator",
+            "no_signed_type": "Attempt to download the quiz without a signed type",
+            "success": "Attempt to download the quiz was successful",
+            "error": "Attempt to download the quiz failed"
+        },
+        "quiz_moderation": {
+            "title": "(Administrator) Moderators",
+            "no_user": "Attempt to add a moderator without a user",
+            "no_add_remove": "Attempt to add a moderator without an action",
+            "success_add": "Attempt to add a moderator was successful",
+            "error_add": "Attempt to add a moderator failed",
+            "success_remove": "Attempt to remove a moderator was successful",
+            "error_remove": "Attempt to remove a moderator failed"
+        },
+        "quiz_rename": {
+            "title": "(Administrator) Rename Quiz",
+            "no_subject": "Attempt to rename the quiz without a subject name",
+            "no_name": "Attempt to rename the quiz without a new subject name",
+            "name_exists": "Attempt to rename the quiz to an existing subject name",
+            "rename": {
+                "subject": "renaming the subject",
+                "questions": "renaming the subject in questions",
+                "reports": "renaming the subject in reports",
+                "scores": "renaming the subject in scores",
+                "analytic": "renaming the subject in analytics"
+            },
+            "success": "Attempt to rename the quiz was successful",
+            "error": "Attempt to rename the quiz failed"
+        },
+        "quiz_status": {
+            "title": "(Administrator) Quiz Status",
+            "no_subject": "Attempt to change the quiz status without a subject name",
+            "no_share": "Attempt to change the quiz status without a status",
+            "status": {
+                "subject": "changing the subject status",
+                "questions": "changing the subject status in questions",
+                "reports": "changing the subject status in reports",
+                "scores": "changing the subject status in scores",
+                "analytic": "changing the subject status in analytics"
+            },
+            "success_no_notification": "Attempt to change the quiz status was successful (public without notifications)",
+            "success_notification": "Attempt to change the quiz status was successful (public with notifications)",
+            "success_private": "Attempt to change the quiz status was successful (private)",
+            "error": "Attempt to change the quiz status failed"
+        },
+        "reset": {
+            "title": "(Administrator) Reset Devices",
+            "device": {
+                "success": "Attempt to remove the device was successful",
+                "error": "Attempt to remove the device failed"
+            },
+            "devices": {
+                "success": "Attempt to reset the list of devices was successful",
+                "error": "Attempt to reset the list of devices failed"
+            },
+            "all_devices": {
+                "success": "Attempt to reset all devices was successful",
+                "error": "Attempt to reset all devices failed"
+            }
+        },
+        "send_notification": {
+            "title": "(Administrator) Send Notifications",
+            "error": "Attempt to send the notification failed",
+            "all_users": {
+                "success": "Attempt to send notifications to all users was successful",
+                "error": "Attempt to send notifications to all users failed"
+            },
+            "user": {
+                "success": "Attempt to send the notification was successful",
+                "error": "Attempt to send the notification failed"
+            }
+        }
+    }
+}
