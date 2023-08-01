@@ -76,7 +76,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 <a name="main-menu--overall"></a><a name="2.1"></a>
 - [2.1](#main-menu--overall) In the main menu, the user will find all the options available. The administrator or moderator will also see his management menu. */index.php*
 
-![1](https://github.com/modek4/quiz/assets/85760836/72136887-0c36-46d2-aaa9-c4619e30e03d)
+![1](https://github.com/modek4/quiz/assets/85760836/9d2843b4-8a54-481d-ba81-5fddd2f50af3)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -128,7 +128,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
   	- Answers
   	- Button to report a question
 
-![2](https://github.com/modek4/quiz/assets/85760836/abf48e9c-4d04-4bca-b750-27cc5778d417)
+![2](https://github.com/modek4/quiz/assets/85760836/07d31de8-fc8f-423f-9276-b73a277ad971)
 
 **Numeric**: The questions are displayed sequentially.
 
@@ -142,7 +142,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 ### 🔨Report question
 - [2.3](#main-menu--report-question) You can report a question using the button in the lower right corner. Marking the answer is not obligatory. */db/report_question.php*
 
-![3](https://github.com/modek4/quiz/assets/85760836/f17855c1-3a18-421e-a777-d10f0172f83f)
+![3](https://github.com/modek4/quiz/assets/85760836/6043d033-f666-4414-9030-77e860ffa559)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -183,7 +183,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 <a name="admin-panel--main"></a><a name="3.2"></a>
 - [3.2](#admin-panel--main) **The main** panel allows you to check the current website statistics, such as: quiz statistics, user status or the number of questions and reports. 
 
-![4](https://github.com/modek4/quiz/assets/85760836/8b41da48-428c-4ec2-a3cd-418c90490c06)
+![4](https://github.com/modek4/quiz/assets/85760836/425b4e08-1ffc-4e90-b953-95b4097306d0)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -198,7 +198,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
   	- ➕ Add and 🗑️ remove answers
   	- 🔢 Change correct answers
 
-![5](https://github.com/modek4/quiz/assets/85760836/6c332457-307d-4682-a279-a283f2ad97cc)
+![5](https://github.com/modek4/quiz/assets/85760836/285a17b2-5908-4d73-a193-382d0d04f8e9)
 
 ℹ A solid green border indicates the selected correct answer. <br/>ℹ Divided into two colors, it means that the user reported question the correct answer.<br/>ℹ A full border with an accent color indicates the answer that the user believes is correct.
 
@@ -217,7 +217,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
   	- 🔐 Access code management *admin/db/quiz_code.php*
   	- 📈 Analytics score management *admin/db/quiz_analytic.php*
 
-![6](https://github.com/modek4/quiz/assets/85760836/77712210-8ca9-4442-bbee-226821d201f3)
+![6](https://github.com/modek4/quiz/assets/85760836/c0f329d8-6809-4b4c-8027-0a8af4ac3a6c)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -230,7 +230,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 
 Each user tab allows us to view detailed information about that user. ([3.6](#admin-panel--users-card))
 
-![7](https://github.com/modek4/quiz/assets/85760836/72a553e9-30f9-44f0-8dba-d9a1e70fbd04)
+![7](https://github.com/modek4/quiz/assets/85760836/d69fe5e0-19ad-4709-8069-1207e6f1dd88)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -243,7 +243,7 @@ Each user tab allows us to view detailed information about that user. ([3.6](#ad
 	- 🔐 Possibility to change access to user's semesters *admin/db/edit_term.php*
 	- 🚫 Possibility to block or unblock a user account *admin/db/block_user.php*
 
-![8](https://github.com/modek4/quiz/assets/85760836/3c0d9395-e42d-459e-8240-961777cb7ec0)
+![8](https://github.com/modek4/quiz/assets/85760836/4db21732-453d-4e63-91ea-8757b1607c75)
 
 **[⬆ back to top](#table-of-contents)**
 
