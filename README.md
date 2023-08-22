@@ -103,12 +103,12 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 #### 🏆Scores
 - [2.1.3](#main-menu--scores) The results are saved to the database and presented in the table. */db/show_score.php*
 - Detailed information after opening the selected result displays the solved test and additional information such as:
-	- 🔢 The total number of answers for a given subject
- 	- ⏱️ Average time for this subject
-  	- 🎯 Average score for this subject
-  	- 📊 The result of the test
-  	- ⏰ The time of the test
-  	- ✅ Answer correctness graph
+	- The total number of answers for a given subject
+ 	- Average time for this subject
+  	- Average score for this subject
+  	- The result of the test
+  	- The time of the test
+  	- Answer correctness graph
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -190,13 +190,13 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 ### 📊Reports
 <a name="admin-panel--reports"></a><a name="3.3"></a>
 - [3.3](#admin-panel--reports) **The reports** tab allows you to view reports and perform the following actions:
-	- ✏️ Update the reported question *admin/db/update_report_question.php*
-	- ❌ Reject the reported question *admin/db/decline_report_question.php*
- 	- 🗑️ Remove the reported question *admin/db/remove_report_question.php*
-  	- 🔄 Refresh the reported question *admin/db/reload_report_question.php*
-  	- 📋 Copy the reported question to clipboard
-  	- ➕ Add and 🗑️ remove answers
-  	- 🔢 Change correct answers
+	- Update the reported question *admin/db/update_report_question.php*
+	- Reject the reported question *admin/db/decline_report_question.php*
+ 	- Remove the reported question *admin/db/remove_report_question.php*
+  	- Refresh the reported question *admin/db/reload_report_question.php*
+  	- Copy the reported question to clipboard
+  	- Add and remove answers
+  	- Change correct answers
 
 ![5](https://github.com/modek4/quiz/assets/85760836/285a17b2-5908-4d73-a193-382d0d04f8e9)
 
@@ -207,15 +207,15 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 ### 🔧Manage panel
 <a name="admin-panel--manage"></a><a name="3.4"></a>
 - [3.4](#admin-panel--manage) **The manage** panel allows you to control the current statistics of information on the website, such as:
-	- ➕ Adding new quizzes *admin/db/quiz_add.php*
- 	- ➕ Adding additional questions to existing quizzes *admin/db/quiz_add.php*
-  	- 🔄 Quizzes status change *admin/db/quiz_status.php*
-  	- 📥 Download quizzes *admin/db/quiz_download.php*
-  	- 🗑️ Deleting quizzes *admin/db/quiz_delete.php*
-  	- ✏️ Rename quizzes *admin/db/quiz_rename.php*
-  	- 🙋 Adding or removing moderators *admin/db/quiz_mod.php*
-  	- 🔐 Access code management *admin/db/quiz_code.php*
-  	- 📈 Analytics score management *admin/db/quiz_analytic.php*
+	- Adding new quizzes *admin/db/quiz_add.php*
+ 	- Adding additional questions to existing quizzes *admin/db/quiz_add.php*
+  	- Quizzes status change *admin/db/quiz_status.php*
+  	- Download quizzes *admin/db/quiz_download.php*
+  	- Deleting quizzes *admin/db/quiz_delete.php*
+  	- Rename quizzes *admin/db/quiz_rename.php*
+  	- Adding or removing moderators *admin/db/quiz_mod.php*
+  	- Access code management *admin/db/quiz_code.php*
+  	- Analytics score management *admin/db/quiz_analytic.php*
 
 ![6](https://github.com/modek4/quiz/assets/85760836/c0f329d8-6809-4b4c-8027-0a8af4ac3a6c)
 
@@ -224,9 +224,9 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
 ### 👥Users list
 <a name="admin-panel--users"></a><a name="3.5"></a>
 - [3.5](#admin-panel--users) **The users** panel allows you to manage current users using options such as:
-	- 🔁 Reset all user devices *admin/db/reset_devices.php*
- 	- 📢 Sending a notification to all users *admin/db/send_notification.php*
-  	- 🛡️ Changing the limit of allowed devices and IP addresses *admin/db/device_limit.php*
+	- Reset all user devices *admin/db/reset_devices.php*
+ 	- Sending a notification to all users *admin/db/send_notification.php*
+  	- Changing the limit of allowed devices and IP addresses *admin/db/device_limit.php*
 
 Each user tab allows us to view detailed information about that user. ([3.6](#admin-panel--users-card))
 
@@ -237,11 +237,11 @@ Each user tab allows us to view detailed information about that user. ([3.6](#ad
 ### 👤User info
 <a name="admin-panel--users-card"></a><a name="3.6"></a>
 - [3.6](#admin-panel--users-card) **The user card** is a place that gives more detailed information about a given user, such as:
-	- 📊 Table of saved results from quizzes
-	- 📈 Graph of average results from the last time
-	- 🗒️ A detailed list of all devices with the ability to delete them *admin/db/reset_devices.php*
-	- 🔐 Possibility to change access to user's semesters *admin/db/edit_term.php*
-	- 🚫 Possibility to block or unblock a user account *admin/db/block_user.php*
+	- Table of saved results from quizzes
+	- Graph of average results from the last time
+	- A detailed list of all devices with the ability to delete them *admin/db/reset_devices.php*
+	- Possibility to change access to user's semesters *admin/db/edit_term.php*
+	- Possibility to block or unblock a user account *admin/db/block_user.php*
 
 ![8](https://github.com/modek4/quiz/assets/85760836/4db21732-453d-4e63-91ea-8757b1607c75)
 
