@@ -34,6 +34,7 @@ try {
                     echo "<i class='fa-solid fa-lock-open' data-id='menage'></i>";
                 }
                 echo "<i class='fa-solid fa-users' data-id='users'></i>";
+                echo "<i class='fa-regular fa-folder-open' data-id='logs'></i>";
         }else if($_POST['navbar']=="menage"){
                 echo "<i class='fa-solid fa-house' data-id='main'></i>
                 <i class='fa-solid fa-question ".$reports_status."' data-id='report'></i>";
@@ -41,6 +42,7 @@ try {
                     echo "<i class='fa-solid fa-lock-open active' data-id='menage'></i>";
                 }
                 echo "<i class='fa-solid fa-users' data-id='users'></i>";
+                echo "<i class='fa-regular fa-folder-open' data-id='logs'></i>";
         }else if($_POST['navbar']=="users"){
                 echo "<i class='fa-solid fa-house' data-id='main'></i>
                 <i class='fa-solid fa-question ".$reports_status."' data-id='report'></i>";
@@ -48,6 +50,7 @@ try {
                     echo "<i class='fa-solid fa-lock-open' data-id='menage'></i>";
                 }
                 echo "<i class='fa-solid fa-users active' data-id='users'></i>";
+                echo "<i class='fa-regular fa-folder-open' data-id='logs'></i>";
         } else if($_POST['navbar']=="main"){
                 echo "<i class='fa-solid fa-house active' data-id='main'></i>
                 <i class='fa-solid fa-question ".$reports_status."' data-id='report'></i>";
@@ -55,6 +58,15 @@ try {
                     echo "<i class='fa-solid fa-lock-open' data-id='menage'></i>";
                 }
                 echo "<i class='fa-solid fa-users' data-id='users'></i>";
+                echo "<i class='fa-regular fa-folder-open' data-id='logs'></i>";
+        } else if($_POST['navbar']=="logs"){
+            echo "<i class='fa-solid fa-house' data-id='main'></i>
+            <i class='fa-solid fa-question ".$reports_status."' data-id='report'></i>";
+            if($_SESSION['admin']){
+                echo "<i class='fa-solid fa-lock-open' data-id='menage'></i>";
+            }
+            echo "<i class='fa-solid fa-users' data-id='users'></i>";
+            echo "<i class='fa-regular fa-folder-open active' data-id='logs'></i>";
         }
     }else{
             echo "<i class='fa-solid fa-house active' data-id='main'></i>
@@ -63,6 +75,7 @@ try {
                 echo "<i class='fa-solid fa-lock-open' data-id='menage'></i>";
             }
             echo "<i class='fa-solid fa-users' data-id='users'></i>";
+            echo "<i class='fa-regular fa-folder-open' data-id='logs'></i>";
     }
     echo "</div>";
     if(isset($_POST['content'])){
@@ -555,6 +568,66 @@ try {
                 </div>
             </div>";
             }
+        } else if($_POST['content']=='logs'){
+            $logs = scandir("../logs");
+            unset($logs[0]);
+            unset($logs[1]);
+            usort($logs, function($a, $b) {
+                return filemtime("../logs/" . $a) < filemtime("../logs/" . $b);
+            });
+            echo "<div class='logs'>
+                <div class='logs_content'>
+                <i class='fa-solid fa-rotate-right reload_logs'></i>
+                <select class='logs_content_select'>";
+                if(isset($_POST['log'])){
+                    if($_POST['log'] == 0){
+                        $log_selected = substr($logs[0], 0, -5);
+                    }else{
+                        if(file_exists("../logs/".$_POST['log'].".json")){
+                            $log_selected = $_POST['log'];
+                        }else{
+                            $log_selected = substr($logs[0], 0, -5);
+                        }
+                    }
+                }
+                foreach($logs as $log){
+                    $log = substr($log, 0, -5);
+                    if($log == $log_selected){
+                        echo "<option value='".$log."' selected>".$log."</option>";
+                    }else{
+                        echo "<option value='".$log."'>".$log."</option>";
+                    }
+                }
+                echo "</select>";
+                $json = file_get_contents("../logs/".$log_selected.".json");
+                $json = json_decode($json, true);
+                $json = array_reverse($json);
+                foreach($json as $record){
+                    if(isset($record['data'])){
+                        if(is_numeric($record['data'])){
+                            echo "<div class='logs_content_item logs_content_item_error'>";
+                        }else{
+                            echo "<div class='logs_content_item'>";
+                        }
+                    }else{
+                        echo "<div class='logs_content_item'>";
+                    }
+                    echo "<h3>".$record['id'].". ".$record['title']."</h3>
+                    <p>".$record['text']."</p>";
+                    if(isset($record['data'])){
+                        echo "<div class='logs_content_item_data'>";
+                        if (is_array($record['data']) || is_object($record['data'])){
+                            foreach($record['data'] as $data => $value){
+                                echo "<p>".$data.": ".$value."</p>";
+                            }
+                        }else{
+                            echo "<p>".$record['data']."</p>";
+                        }
+                        echo "</div>";
+                    }
+                    echo "<span><span class='user'>".$record['user']."</span> - ".$record['date']."</span></div>";
+                }
+            echo "</div></div>";
         }
     }
     $conn->close();
