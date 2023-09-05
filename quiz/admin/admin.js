@@ -40,6 +40,9 @@ $(document).ready(function() {
     function run(){
         $('.admin_menu_close i').click(function() {
             $('.admin_menu').css('top', '-150%');
+            if($('.reload_logs').length){
+                $('.reload_logs').css('bottom', '-5em');
+            }
         });
         var navbar = document.querySelector('.navbar');
         navbar.addEventListener('click', function(e) {
@@ -127,6 +130,33 @@ $(document).ready(function() {
                             add_log("admin_menu: users", "AJAX: "+error, "admin.js", "./logs/", xhr.status);
                             notifyshow(status+" ("+xhr.status+"): "+error, '');
                         }
+                    });
+                    break;
+                case 'logs':
+                    function logs(log = '0'){
+                        $.ajax({
+                            type: 'POST',
+                            url: './admin/index.php',
+                            data: {navbar : 'logs', content: 'logs', log: log},
+                            success: function(response) {
+                                $('.admin_menu_content').html(response);
+                                run();
+                                $('.logs_content_select').change(function(){
+                                    let log = $(this).val();
+                                    logs(log);
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                add_log("admin_menu: logs", "AJAX: "+error, "admin.js", "./logs/", xhr.status);
+                                notifyshow(status+" ("+xhr.status+"): "+error, '');
+                            }
+                        });
+                    }
+                    logs();
+                    $(document).on('click', '.reload_logs', function() {
+                        $(this).addClass('active');
+                        let log = $('.logs_content_select').val();
+                        logs(log);
                     });
                     break;
                 default:
