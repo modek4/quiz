@@ -181,6 +181,7 @@ $(document).ready(function() {
         save_score_table.classList.add('hide');
         save_score_table.classList.remove('show');
         $('#close_save').attr('onclick', 'closeSaveScore()');
+        var last_question_id = document.getElementById('quiz_results').getAttribute('data-last_id');
         if(document.getElementById('quiz_results')!==null) {
           const quiz_results = document.getElementById('quiz_results');
           var final_score = 0;
@@ -295,7 +296,15 @@ $(document).ready(function() {
                           type: "POST",
                           url: "db/analytic_change.php",
                           data: {selected_answers: selected_answers},
-                          success: function() {},
+                          success: function() {
+                            if(question_number_short == last_question_id){
+                              if(max_checked === checked_count + 1 || selected_answer.classList.contains('incorrect')){
+                                $('#save_score').click();
+                                closeSaveScore();
+                                clearInterval(timer);
+                              }
+                            }
+                          },
                           error: function(xhr, status, error) {
                               add_log("index: score change", "AJAX: "+error, "script.js", "./logs/", xhr.status);
                               notifyshow(status+" ("+xhr.status+"): "+error, '');
