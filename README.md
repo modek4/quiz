@@ -27,6 +27,7 @@
 3. [Manage menu](#admin-panel--manage)
 4. [Users list](#admin-panel--users)
 5. [User card](#admin-panel--users-card)
+6. [Logs](#admin-panel--logs)
 ### [Summary](#summary-1)
 
 ## Main assumptions
@@ -90,6 +91,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
   	- 40
   	- ??? (Any number of questions entered by the user)
 - Below there is a button to call the test, under which the test execution time, result and the ability to save the result are displayed. */db/save_score.php*
+- After returning to the website, we can resume the previously started test. */db/relaunch.php*
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -109,6 +111,7 @@ The administrator account<br/>E-mail: admin@admin.com<br/>Password: admin
   	- The result of the test
   	- The time of the test
   	- Answer correctness graph
+- It is possible to automatically save the test after it has been fully completed. */db/auto_save.php*
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -242,8 +245,17 @@ Each user tab allows us to view detailed information about that user. ([3.6](#ad
 	- A detailed list of all devices with the ability to delete them *admin/db/reset_devices.php*
 	- Possibility to change access to user's semesters *admin/db/edit_term.php*
 	- Possibility to block or unblock a user account *admin/db/block_user.php*
+ 	- Checking the test currently being performed by the user */admin/db/user_settings.php*
 
 ![8](https://github.com/modek4/quiz/assets/85760836/4db21732-453d-4e63-91ea-8757b1607c75)
+
+**[⬆ back to top](#table-of-contents)**
+
+### 📝Logs
+<a name="admin-panel--logs"></a><a name="3.7"></a>
+- [3.7](#admin-panel--logs) **The logs** is a place where we can check all actions on the website. *./log.php*
+
+![image](https://github.com/modek4/quiz/assets/85760836/37e96aaa-86f2-4819-8d04-75fff636af7c)
 
 **[⬆ back to top](#table-of-contents)**
 
