@@ -86,6 +86,7 @@ if(isset($_POST['analytic'])){
     $data[$answerId-1]['id_question'] = $id_question;
     $data[$answerId-1]['answers'] = $answers;
     $data[$answerId-1]['correct_answers'] = $correct_answers;
+    $data[$answerId-1]['date'] = date("Y-m-d H:i:s");
 
     $file = fopen($file_name_change, "w");
     fwrite($file, json_encode($data, JSON_UNESCAPED_UNICODE));

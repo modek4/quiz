@@ -40,8 +40,6 @@
             "incorrect_password": "Invalid email or password!",
             "account_blocked": "Your account has been blocked. Please contact the administrator.",
             "new_login_notification": "New login",
-            "new_login_new_phone_notification_text": "We detected a login to your account from a new device. Remember not to share your account data with anyone!",
-            "new_login_phone_notification_text": "We detected a login to your account in a new location. Remember not to share your account data with anyone!",
             "new_login_device_notification_text": "We detected a login to your account from a device in a new location. Remember not to share your account data with anyone!",
             "password_not_match": "Passwords do not match",
             "password_length": "Password must contain at least 8 characters",
@@ -91,6 +89,8 @@
             "sort_option_numeric": "Numeric",
             "algorithm_title": "Analysis (beta)",
             "algorithm_text": "Possibility to analyze the learning progress to match questions. Random question order option required",
+            "relaunch_title": "Quiz Relaunch",
+            "relaunch_text": "Ability to resume quiz to continue learning",
             "term_title": "Access to Semesters",
             "term_text": "To access other semesters, contact the administrator.",
             "code_title": "Your Activation Code"
@@ -438,7 +438,12 @@
                 "text": "Semesters",
                 "success": "Semester access has been updated",
                 "error": "Failed to update semester access",
-                "mod_text": "Moderator cannot block the account"
+                "mod_text": "Moderator cannot change term access",
+                "change_title": "Change semester access",
+                "actual_term": "Current access",
+                "new_term": "New access",
+                "confirm_no": "Cancel",
+                "confirm_yes": "Change"
             },
             "score": {
                 "subject": "Subject",
@@ -517,14 +522,20 @@
             "no_analytic_points": "Attempt to show the quiz without analytic points",
             "error": "Showing quiz attempt failed",
             "one_to_one_success": "Showing quiz attempt was successful (1+)",
-            "success": "Showing quiz attempt was successful"
+            "success": "Showing quiz attempt was successful",
+            "relaunch_decline": "Quiz relaunch rejected",
+            "relaunch_decline_error": "Quiz relaunch rejected with error",
+            "relaunch_success": "Quiz resume successful",
+            "relaunch_save_decline": "Quiz relaunch rejected with score saving error"
         },
         "settings": {
             "title": "Settings",
             "question_order_success": "Attempt to change question order settings was successful",
             "question_order_error": "Attempt to change question order settings failed",
             "question_analytic_success": "Attempt to change analytic settings was successful",
-            "question_analytic_error": "Attempt to change analytic settings failed"
+            "question_analytic_error": "Attempt to change analytic settings failed",
+            "question_relaunch_success": "Attempt to change test relaunch settings was successful",
+            "question_relaunch_error": "Attempt to change test relaunch settings failed"
         },
         "block_user": {
             "title": "(Administrator) Account Block",

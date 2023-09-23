@@ -7,6 +7,23 @@ function add_log($title, $text, $user, $destination="", $data = null){
         $json = json_decode($file_content, true);
     } else {
         $json = [];
+        $dir = './logs/';
+        $days = 13; // 13 days + today = 14 days
+        $files = scandir($dir);
+        $files = array_diff($files, array('.', '..'));
+        $modify_time = array();
+        foreach ($files as $file) {
+            $file_path_remove = $dir . $file;
+            $modify_time[$file] = filemtime($file_path_remove);
+        }
+        arsort($modify_time);
+        $actual_logs = array_slice($modify_time, 0, $days, true);
+        foreach ($files as $file) {
+            if (!isset($actual_logs[$file])) {
+                $file_path_remove = $dir . $file;
+                unlink($file_path_remove);
+            }
+        }
     }
     if($data == null){
         $json[] = [

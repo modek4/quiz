@@ -24,15 +24,20 @@ if ($conn->connect_error) {
         }
         $subject = $_POST['subject'];
         $question_number = $_POST['question_number'];
-        $sql = "SELECT correct_answers FROM questions WHERE subject = '$subject' AND id_question = '$question_number'";
-        if (mysqli_query($conn, $sql)) {
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_array($result);
-            $correct = str_replace(';', '', $row['correct_answers']);
-            echo $correct;
-        } else {
-            echo "";
+        $code = $_SESSION['code'];
+        $file_name = "../analytic/".$code."_score.json";
+        $correct = "";
+        if(file_exists($file_name)){
+            $json_data = json_decode(file_get_contents($file_name),true);
+            foreach ($json_data as $value) {
+                if($value['id_question']==$question_number){
+                    $correct = str_replace(';', '', $value['correct_answers']);
+                    break;
+                }
+            }
         }
+        $_SESSION['last_answer_question'] = $question_number;
+        echo $correct;
     }
     $conn->close();
 }

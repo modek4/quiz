@@ -1,22 +1,39 @@
 <?php
 session_start();
-require_once("connect.php");
-$conn=mysqli_connect($servername,$username,$password,$dbname);
-if ($conn->connect_error) {
-    echo $_SESSION['lang']['database']['error'];
+$file_href = "../active.json";
+if(!isset($_SESSION['email']) || !isset($_POST['status'])){
     exit();
+}
+if(!file_exists($file_href)){
+    $active = array();
+    $active[] = array(
+        'email' => $_SESSION['email'],
+        'status' => $_POST['status'],
+        'time' => date('Y-m-d H:i:s', time())
+    );
+    $fp = fopen($file_href, 'w');
+    fwrite($fp, json_encode($active, JSON_PRETTY_PRINT));
+    fclose($fp);
 }else{
-    $conn->set_charset("utf8");
-    if(isset($_POST['status'])){
-        $status = $_POST['status'];
-        $_SESSION['status'] = $status;
-        $sql = "UPDATE quiz_users SET last_login = NOW() WHERE email = '".$_SESSION['email']."'";
-        if ($conn->query($sql) === TRUE) {
-            echo "success";
-        } else {
-            echo "error";
+    $active = json_decode(file_get_contents($file_href), true);
+    $found = false;
+    foreach($active as $key => $value){
+        if($value['email'] == $_SESSION['email']){
+            $found = true;
+            $active[$key]['status'] = $_POST['status'];
+            $active[$key]['time'] = date('Y-m-d H:i:s', time());
+            break;
         }
     }
-    $conn->close();
+    if(!$found){
+        $active[] = array(
+            'email' => $_SESSION['email'],
+            'status' => $_POST['status'],
+            'time' => date('Y-m-d H:i:s', time())
+        );
+    }
+    $fp = fopen($file_href, 'w');
+    fwrite($fp, json_encode($active, JSON_PRETTY_PRINT));
+    fclose($fp);
 }
 ?>

@@ -50,11 +50,16 @@ if (!is_writable(session_save_path())) {
         );
         throw new Exception($_SESSION['lang']['database']['error']);
       }
+      if(!isset($_SESSION['email'])){
+        $_SESSION['email'] = "N/A";
+        header("Location: ./check_answer.php");
+        exit();
+      }
       $conn->set_charset("utf8");
       $sql = "SELECT count(*) FROM notification WHERE textread=1 AND email = '".$_SESSION['email']."'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
-      $count_notifications = $row['count(*)'];
+      $count_notifications = $row['count(*)']>99 ? "99+" : $row['count(*)'];
       echo "<script>var lang_text = ".json_encode($_SESSION['lang']).";</script>";
       if ((isset($_SESSION['admin']) && $_SESSION['admin']==true) || (isset($_SESSION['mod']) && $_SESSION['mod']==true)) {
         echo "<link rel='stylesheet' type='text/css' href='./admin/style.css'>";
@@ -88,6 +93,50 @@ if (!is_writable(session_save_path())) {
       echo "<body class='no-scroll'>";
     }else{
       echo "<body class='no-scroll' oncontextmenu='return false'>";
+    }
+    if(@$_SESSION['question_relaunch'] == 1){
+      $search_pattern_file = "./analytic/";
+      $matching_files = scandir($search_pattern_file);
+      array_splice($matching_files, 0, 2);
+      $matching_files = preg_grep("/".$_SESSION['code']."_score/", $matching_files);
+      if($matching_files){
+        $file_name = $search_pattern_file.$matching_files[2];
+        foreach($matching_files as $file){
+          if(strpos($file, $_SESSION['code']."_score")!==false){
+            $file_name = $search_pattern_file.$file;
+          }
+        }
+        $file_read = null;
+        if(file_exists($file_name)){
+          $file = fopen($file_name, "r");
+          $file_read = json_decode(fread($file, filesize($file_name)), true);
+          fclose($file);
+        }
+        if($file_read=="[]" || $file_read==null || $file_read=='' || $file_read==false || $file_read==[]){
+          unlink($file_name);
+        }else{
+          $progress_save_session = 0;
+          $progress_save_session_all = 0;
+          foreach($file_read as $question){
+            if($question['answers']!=0){
+              $progress_save_session++;
+            }
+            $progress_save_session_all++;
+          }
+          $progress_save_session_all = $progress_save_session_all == 0 ? 1 : $progress_save_session_all;
+          $progress_save_session = round($progress_save_session/$progress_save_session_all*100, 2);
+          echo "<div class='load_session_quiz'>
+            <div class='load_session_quiz_content'>
+              <h3>Czy chcesz wznowić quiz:<br/><span id='session_quiz_name' data-code='".$_SESSION['code']."'>".$file_read[0]['subject']."</span></h3>
+              <p>Postęp: ".$progress_save_session."%</p>
+              <div class='load_session_quiz_content_buttons'>
+                <button class='load_session_quiz_content_yes'>Tak</button>
+                <button class='load_session_quiz_content_no'>Nie</button>
+              </div>
+            </div>
+          </div>";
+        }
+      }
     }
     ?>
     <div id="menu">

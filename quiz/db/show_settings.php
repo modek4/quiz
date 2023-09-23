@@ -48,6 +48,25 @@ if ($conn->connect_error) {
                 "../logs/"
             );
         }
+    } else if(isset($_POST['question_relaunch'])){
+        $question_relaunch = $_POST['question_relaunch'];
+        $sql = "UPDATE codes SET question_relaunch='".$question_relaunch."' WHERE code='".$_SESSION['code']."'";
+        if($result = $conn->query($sql)){
+            $_SESSION['question_relaunch'] = $question_relaunch;
+            add_log(
+                $_SESSION['lang']['logs']['settings']['title'],
+                $_SESSION['lang']['logs']['settings']['question_relaunch_success'],
+                $_SESSION['email'],
+                "../logs/"
+            );
+        }else{
+            add_log(
+                $_SESSION['lang']['logs']['settings']['title'],
+                $_SESSION['lang']['logs']['settings']['question_relaunch_error'],
+                $_SESSION['email'],
+                "../logs/"
+            );
+        }
     }else{
         $sql = "SELECT term FROM codes WHERE code='".$_SESSION['code']."'";
         $result = $conn->query($sql);
@@ -114,6 +133,23 @@ if ($conn->connect_error) {
                     echo "
                 </ul>
                 <ul>
+                    <li>".$_SESSION['lang']['quiz']['settings']['relaunch_title']."</li>
+                    <li><span>".$_SESSION['lang']['quiz']['settings']['relaunch_text']."</span></li>";
+                    if(@$_SESSION['question_relaunch'] == 0){
+                        echo "
+                        <li class='checkbox_item'>
+                            <input class='checkbox' id='checkbox_relaunch' type='checkbox'/>
+                            <label class='checkbox_btn' for='checkbox_relaunch'></label>
+                        </li>";
+                    }else{
+                        echo "
+                        <li class='checkbox_item'>
+                            <input class='checkbox' id='checkbox_relaunch' type='checkbox' checked/>
+                            <label class='checkbox_btn' for='checkbox_relaunch'></label>
+                        </li>";
+                    }
+                echo"</ul>
+                <ul>
                     <li>".$_SESSION['lang']['quiz']['settings']['term_title'].": ".$term."</li>
                     <li><span>".$_SESSION['lang']['quiz']['settings']['term_text']."</span></li>
                 </ul>
@@ -128,6 +164,7 @@ if ($conn->connect_error) {
             const random_option = document.getElementById('radio_1');
             const numeric_option = document.getElementById('radio_2');
             const checkbox = document.getElementById('checkbox_analytic');
+            const checkbox_relaunch = document.getElementById('checkbox_relaunch');
             checkbox.addEventListener('change', handle_checkbox_change);
             function handle_checkbox_change(event) {
                 var selected_value = event.target.checked;
@@ -161,6 +198,43 @@ if ($conn->connect_error) {
                     },
                     error: function(xhr, status, error) {
                         add_log('index: settings change question analytic', 'AJAX: '+error, 'script.js', './logs/', xhr.status);
+                        notifyshow(status+' ('+xhr.status+'): '+error, '');
+                    }
+                });
+            }
+            checkbox_relaunch.addEventListener('change', handle_checkbox_relaunch_change);
+            function handle_checkbox_relaunch_change(event) {
+                var selected_value = event.target.checked;
+                if(selected_value == true){
+                    selected_value = 1;
+                }else{
+                    selected_value = 0;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: 'db/show_settings.php',
+                    data: {question_relaunch: selected_value},
+                    success: function(data){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'db/show_settings.php',
+                            success: function(response) {
+                              $('.settings_menu').html(response);
+                              $('.close_score_settings').click(function() {
+                                $('.settings_menu').fadeOut(500);
+                              });
+                              $('.settings_menu_main_background').click(function() {
+                                $('.close_score_settings').click();
+                              });
+                            },
+                            error: function(xhr, status, error) {
+                                add_log('index: reload settings after change relaunch', 'AJAX: '+error, 'script.js', './logs/', xhr.status);
+                                notifyshow(status+' ('+xhr.status+'): '+error, '');
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        add_log('index: settings change question relaunch', 'AJAX: '+error, 'script.js', './logs/', xhr.status);
                         notifyshow(status+' ('+xhr.status+'): '+error, '');
                     }
                 });

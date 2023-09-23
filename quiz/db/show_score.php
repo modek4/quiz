@@ -88,7 +88,7 @@ if ($conn->connect_error) {
                 }
             }
         echo "<div class='specific_score quiz'>";
-        echo "<a id='close_specific' class='close_score_show'></a>";
+        echo "<a id='close_specific' data-orderby='".$_POST['orderby']."' data-page='".$_POST['page']."' class='close_score_show'></a>";
             $sql_stats = "SELECT * FROM analytics WHERE subject = '$subject_stats_name' and code = '".$_SESSION['code']."'";
             $result_stats = mysqli_query($conn, $sql_stats);
             $checked_stats = 0;
@@ -374,10 +374,13 @@ if ($conn->connect_error) {
             });
             $('#close_specific').click(function() {
                 $('#show_table').css({'-webkit-transform':'translateX(-110%)'});
+                var page = $('#close_specific').data('page');
+                var orderby = $('#close_specific').data('orderby');
                 setTimeout(function() {
                     $.ajax({
                         type: 'POST',
                         url: 'db/show_score.php',
+                        data: {page: page, orderby: orderby},
                         success: function(data) {
                             $('#show_table').css({'-webkit-transform':'translateX(0%)'});
                             $('#show_table').html(data);
@@ -396,18 +399,66 @@ if ($conn->connect_error) {
         }else{
             echo "<a class='close_score_show'></a>";
             $email = $_SESSION['email'];
-            $sql = "SELECT * FROM scores WHERE email='$email' ORDER BY id DESC";
+            if (!isset($_POST['orderby'])) {
+                $orderby = '6 DESC';
+            } else {
+                $orderby = $_POST['orderby'];
+            }
+            $orderby_array = explode(" ", $orderby);
+            $orderby_array[2] = $orderby_array[1] == 'ASC' ? '<span>⬆</span>' : '<span>⬇</span>';
+            if($orderby_array[0] == 4){
+                $orderby = '(score/question_count)'.$orderby_array[1];
+            }
+            $sql = "SELECT * FROM scores WHERE email='$email' ORDER BY ".$orderby;
             $result = mysqli_query($conn, $sql);
             if(mysqli_num_rows($result) == 0){
                 echo "<h2>".$_SESSION['lang']['quiz']['stats']['table']['empty']."</h2>";
-                exit;
+                exit();
             }else{
-                echo "<table>";
+                $results_per_page = 20; // Results per page
+                $total_results = mysqli_num_rows($result);
+                $total_pages = ceil($total_results / $results_per_page);
+                if (!isset($_POST['page'])) {
+                    $page = 1;
+                } else {
+                    $page = $_POST['page'];
+                }
+                $start_index = ($page - 1) * $results_per_page;
+                $sql .= " LIMIT $start_index, $results_per_page";
+                $result = mysqli_query($conn, $sql);
+                echo "<table data-page='".$page."' data-orderby='".$orderby."'>";
                 echo "<thead><tr>";
-                echo "<th>".$_SESSION['lang']['quiz']['stats']['table']['subject']."</th>";
-                echo "<th>".$_SESSION['lang']['quiz']['stats']['table']['score']."</th>";
-                echo "<th>".$_SESSION['lang']['quiz']['stats']['table']['date']."</th>";
-                echo "<th>".$_SESSION['lang']['quiz']['stats']['table']['time']."</th>";
+                $columns = [
+                    ['data-sort' => '3', 'data-order' => 'ASC'],
+                    ['data-sort' => '4', 'data-order' => 'ASC'],
+                    ['data-sort' => '6', 'data-order' => 'ASC'],
+                    ['data-sort' => '7', 'data-order' => 'ASC'],
+                ];
+                foreach ($columns as $index => $column) {
+                    $sortData = $column['data-sort'];
+                    $orderData = ($orderby_array[0] == $sortData) ? $orderby_array[1] : $column['data-order'];
+                    $displayName = '';
+                    switch ($sortData) {
+                        case '3':
+                            $displayName = $_SESSION['lang']['quiz']['stats']['table']['subject'];
+                            break;
+                        case '4':
+                            $displayName = $_SESSION['lang']['quiz']['stats']['table']['score'];
+                            break;
+                        case '6':
+                            $displayName = $_SESSION['lang']['quiz']['stats']['table']['date'];
+                            break;
+                        case '7':
+                            $displayName = $_SESSION['lang']['quiz']['stats']['table']['time'];
+                            break;
+                        default:
+                            break;
+                    }
+                    if ($orderby_array[0] == $sortData) {
+                        $displayName .= ' ' . $orderby_array[2];
+                    }
+                    echo "<th data-sort='$sortData' data-order='$orderData'>$displayName</th>";
+                }
                 echo "<th>".$_SESSION['lang']['quiz']['stats']['table']['stats_title']."</th>";
                 echo "</tr></thead>";
                 while ($row = mysqli_fetch_array($result)) {
@@ -426,15 +477,97 @@ if ($conn->connect_error) {
                     echo "</tr>";
                 }
                 echo "</table>";
+                echo "<div class='pagination'>";
+                if ($page > 1) {
+                    echo "<a class='pagination_arrow' data-page='" . ($page - 1) . "'><i class='fa-solid fa-chevron-left'></i></a>";
+                    echo "<a data-page='1'>1</a>";
+                } else {
+                    echo "<a class='pagination_actual_page' data-page='1'>1</a>";
+                }
+                if ($page != 1 && $page != $total_pages) {
+                    echo "<span>...</span>";
+                    echo "<span class='pagination_actual_page'>$page</span>";
+                }
+                if ($total_pages != 1) {
+                    echo "<span>...</span>";
+                }
+                if ($page < $total_pages) {
+                    if ($total_pages > 1) {
+                        echo "<a data-page='$total_pages'>$total_pages</a>";
+                    }
+                    echo "<a class='pagination_arrow' data-page='" . ($page + 1) . "'><i class='fa-solid fa-chevron-right'></i></a>";
+                } else {
+                    if ($total_pages > 1) {
+                        echo "<a class='pagination_actual_page' data-page='$total_pages'>$total_pages</a>";
+                    }
+                }
+
+                echo "</div>";
                 echo "<script>
+                $('table th').click(function() {
+                    var sort = $(this).data('sort');
+                    var order = $(this).data('order');
+                    var page = $('table').data('page');
+                    if(order == 'ASC'){
+                        $(this).data('order', 'DESC');
+                    }else{
+                        $(this).data('order', 'ASC');
+                    }
+                    if(sort != undefined){
+                        order = $(this).data('order');
+                        var orderby = sort+' '+order;
+                        $('table th span').remove();
+                        if(order == 'ASC'){
+                            $(this).html($(this).html()+' <span>⬆</span>');
+                        }else{
+                            $(this).html($(this).html()+' <span>⬇</span>');
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: 'db/show_score.php',
+                            data: {page: page, orderby: orderby},
+                            success: function(data) {
+                                $('#show_table').html(data);
+                                $('.close_score_show').click(function() {
+                                    $('#show_table').css({'-webkit-transform':'translateX(-110%)'});
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                add_log('index: sort table', 'AJAX: '+error, 'script.js', './logs/', xhr.status);
+                                notifyshow(status+' ('+xhr.status+'): '+error, '');
+                            }
+                        });
+                    }
+                });
+                $('.pagination a').click(function() {
+                    var page = $(this).data('page');
+                    var orderby = $('table').data('orderby');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'db/show_score.php',
+                        data: {page: page, orderby: orderby},
+                        success: function(data) {
+                            $('#show_table').html(data);
+                            $('.close_score_show').click(function() {
+                                $('#show_table').css({'-webkit-transform':'translateX(-110%)'});
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            add_log('index: pagination', 'AJAX: '+error, 'script.js', './logs/', xhr.status);
+                            notifyshow(status+' ('+xhr.status+'): '+error, '');
+                        }
+                    });
+                });
                 $('.show_specific_score').click(function() {
                     var score_id = $(this).data('id');
+                    var page_back = $('table').data('page');
+                    var orderby_back = $('table').data('orderby');
                     $('#show_table').css({'-webkit-transform':'translateX(-110%)'});
                     setTimeout(function() {
                         $.ajax({
                             type: 'POST',
                             url: 'db/show_score.php',
-                            data: {score_id: score_id},
+                            data: {score_id: score_id, page: page_back, orderby: orderby_back},
                             success: function(data) {
                                 $('#show_table').animate({scrollTop:0}, 'fast');
                                 $('#show_table').css({'-webkit-transform':'translateX(0%)'});

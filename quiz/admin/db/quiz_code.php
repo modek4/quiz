@@ -45,7 +45,7 @@ if ($conn->connect_error) {
         }
         $code_added = true;
         foreach($codes as $code){
-            $sql = "INSERT INTO codes VALUES ('NULL', '$code[0]', '1', '$code[1]', '0', '1')";
+            $sql = "INSERT INTO codes VALUES ('NULL', '$code[0]', '1', '$code[1]', '0', '1', '1')";
             if(!$conn->query($sql)){
                 $code_added = false;
             }

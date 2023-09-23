@@ -154,7 +154,7 @@ $(document).ready(function() {
                     }
                     logs();
                     $(document).on('click', '.reload_logs', function() {
-                        $(this).addClass('active');
+                        $('.reload_logs').addClass('reload_active');
                         let log = $('.logs_content_select').val();
                         logs(log);
                     });
@@ -284,7 +284,7 @@ $(document).ready(function() {
                         usedColors.push(backgroundColor);
                     }
                     let config = {
-                        type: 'line',
+                        type: 'bar',
                         data: data,
                         options: options,
                     };
@@ -424,9 +424,7 @@ $(document).ready(function() {
         });
         //copy report
         $(document).on('click', '.fa-copy', function() {
-            let question = $(this).parent().find('h4').html().split(" - ")[0]
-                + "\n" + $(this).parent().find('h4').html().split(" - ")[1]
-                + ". " + $(this).parent().find('textarea').html();
+            let question = $(this).parent().find('textarea').html();
             let letter = 97;
             $(this).parent().find('.answer textarea').each(function(index, element) {
                 question += "\n" + String.fromCharCode(letter) + ") " + $(element).val();
@@ -1212,29 +1210,73 @@ $(document).ready(function() {
             $(this).parent().removeClass('active');
         });
         //edit term
-        $(document).on('click', '.fa-pen-to-square, .fa-check', function() {
-            if($(this).parent().find('i').hasClass('fa-pen-to-square')){
-                $(this).parent().find('i').removeClass('fa-pen-to-square').addClass('fa-check');
-                $(this).parent().parent().find('input').removeAttr('disabled');
-            }else{
-                $(this).parent().find('i').removeClass('fa-check').addClass('fa-pen-to-square');
-                $(this).parent().parent().find('input').attr('disabled', 'disabled');
-                let term_val = $(this).parent().parent().find('input').val();
-                let code_user = $(this).parent().parent().find('input').attr('data-id');
-                $.ajax({
-                    type: 'POST',
-                    url: './admin/db/edit_term.php',
-                    data: {term: term_val, code: code_user},
-                    success: function(response) {
-                        notifyshow(response, '');
-                    },
-                    error: function(xhr, status, error) {
-                        add_log("admin_menu: users change user term", "AJAX: "+error, "admin.js", "./logs/", xhr.status);
-                        notifyshow(status+" ("+xhr.status+"): "+error, '');
-                    }
-                });
-            }
+        $(document).on('click', '.change_user_term_access', function() {
+            let term_val = $(this).attr("data-term");
+            let user_code = $(this).attr("data-code");
+            let confirm_window = '<div class="confirm_window"><div class="confirm_window_content">'+
+                '<h3>'+lang_text['admin']['users']['term']['change_title']+'</h3>'+
+                '<input type="text" placeholder="'+lang_text['admin']['users']['term']['actual_term']+': '+term_val+'" disabled="disabled">'+
+                '<input type="text" class="term_input_text" placeholder="'+lang_text['admin']['users']['term']['new_term']+'" value="'+term_val+'">'+
+                '<div class="confirm_window_buttons">'+
+                    '<button class="confirm_window_button_yes">'+lang_text['admin']['users']['term']['confirm_yes']+'</button>'+
+                    '<button class="confirm_window_button_no">'+lang_text['admin']['users']['term']['confirm_no']+'</button>'+
+                '</div></div></div>';
+            $('body').append(confirm_window);
+            $('.confirm_window').css("display", "flex").hide().fadeIn(300);
+            $('.confirm_window_button_no').click(function() {
+                $('.confirm_window').fadeOut(300);
+                setTimeout(function() {
+                    $('.confirm_window').remove();
+                }, 300);
+            });
+            $('.confirm_window_button_yes').click(function() {
+                let term_val = $('.term_input_text').val();
+                $('.confirm_window').fadeOut(300);
+                setTimeout(function() {
+                    $('.confirm_window').remove();
+                    $.ajax({
+                        type: 'POST',
+                        url: './admin/db/edit_term.php',
+                        data: {term: term_val, code: user_code},
+                        success: function(response) {
+                            notifyshow(response, '');
+                        },
+                        error: function(xhr, status, error) {
+                            add_log("admin_menu: users change user term", "AJAX: "+error, "admin.js", "./logs/", xhr.status);
+                            notifyshow(status+" ("+xhr.status+"): "+error, '');
+                        }
+                    });
+                }, 300);
+            });
         });
+        //watch user
+        $(document).on('click', '.watch_user', function() {
+            let user_code = $(this).attr("data-code");
+            watch_user(user_code);
+        });
+        $(document).on('click', '.reload_users_user', function() {
+            $(this).children('i').addClass('fa-spin');
+            let user_code = $(this).attr("data-code");
+            watch_user(user_code);
+        });
+        function watch_user(user_code){
+            $.ajax({
+                type: 'POST',
+                url: './admin/db/user_settings.php',
+                data: {user_code: user_code, user_watch: 1},
+                success: function(response) {
+                    $('.users_user_settings_content').html(response);
+                    $('.users_user_settings').addClass('active');
+                    $(document).on('click', '.fa-chevron-left', function() {
+                        $('.users_user_settings').removeClass('active');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    add_log("admin_menu: users watch user quiz", "AJAX: "+error, "admin.js", "./logs/", xhr.status);
+                    notifyshow(status+" ("+xhr.status+"): "+error, '');
+                }
+            });
+        }
         //block user
         $(document).on('click', '.block_user_button', function() {
             $.ajax({

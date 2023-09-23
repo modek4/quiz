@@ -40,8 +40,6 @@
             "incorrect_password": "Nieprawidłowy email lub hasło!",
             "account_blocked": "Konto zablokowane. Skontaktuj się z administratorem.",
             "new_login_notification": "Nowe logowanie",
-            "new_login_new_phone_notification_text": "Wykryliśmy logowanie na twoje konto z nowego telefonu. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
-            "new_login_phone_notification_text": "Wykryliśmy logowanie na twoje konto z telefonu w nowej lokalizacji. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
             "new_login_device_notification_text": "Wykryliśmy logowanie na twoje konto z urządzenia w nowej lokalizacji. Pamiętaj, aby nikomu nie udostępniać danych do swojego konta!",
             "password_not_match": "Hasła nie są takie same",
             "password_length": "Hasło musi zawierać co najmniej 8 znaków",
@@ -68,7 +66,7 @@
             "load_quiz": "Ładowanie...",
             "szukaj": "Szukaj",
             "term": "Semestr",
-            "analytic_title": "Przewydywany stopień wiedzy",
+            "analytic_title": "Przewidywany stopień wiedzy",
             "score_title": "Aktualny Wynik",
             "correct": "Nauczone",
             "incorrect": "Nienauczone",
@@ -91,6 +89,8 @@
             "sort_option_numeric": "Numerycznie",
             "algorithm_title": "Analiza (beta)",
             "algorithm_text": "Możliwość analizowania przebiegu nauki w celu dopasowania pytań. Wymagana opcja losowej kolejności pytań",
+            "relaunch_title": "Wznowienie quizu",
+            "relaunch_text": "Możliwość wznowienia wcześniej uruchomionego testu w celu kontynuowania nauki",
             "term_title": "Dostęp do semestrów",
             "term_text": "W celu uzyskania dostępu do innych semestrów skontaktuj się z administratorem.",
             "code_title": "Twój kod aktywacyjny"
@@ -438,7 +438,12 @@
                 "text": "Semestry",
                 "success": "Zaktualizowano dostęp do semestrów",
                 "error": "Nie udało się zaktualizować dostępu do semestrów",
-                "mod_text": "Moderator nie może zablokować konta"
+                "mod_text": "Moderator nie może zablokować konta",
+                "change_title": "Zmień dostęp do semestrów",
+                "actual_term": "Aktualny dostęp",
+                "new_term": "Nowy dostęp",
+                "confirm_no": "Anuluj",
+                "confirm_yes": "Zmień"
             },
             "score":{
                 "subject": "Przedmiot",
@@ -517,14 +522,20 @@
             "no_analytic_points": "Próba wyświetlenia quizu bez punktów analityki",
             "error": "Próba wyświetlenia quizu zakończona błędem",
             "one_to_one_success": "Próba wyświetlenia quizu zakończona sukcesem (1+)",
-            "success": "Próba wyświetlenia quizu zakończona sukcesem"
+            "success": "Próba wyświetlenia quizu zakończona sukcesem",
+            "relaunch_decline": "Wznowienie quizu odrzucone",
+            "relaunch_decline_error": "Wznowienie quizu odrzucone, zakończone błędem",
+            "relaunch_success": "Wznowienie quizu zakończone sukcesem",
+            "relaunch_save_decline": "Wznowienie quizu odrzucone z błędem zapisu wyniku"
         },
         "settings":{
             "title": "Ustawienia",
             "question_order_success": "Próba zmiany ustawień pytań zakończona sukcesem",
             "question_order_error": "Próba zmiany ustawień pytań zakończona błędem",
             "question_analytic_success": "Próba zmiany ustawień analityki zakończona sukcesem",
-            "question_analytic_error": "Próba zmiany ustawień analityki zakończona błędem"
+            "question_analytic_error": "Próba zmiany ustawień analityki zakończona błędem",
+            "question_relaunch_success": "Próba zmiany ustawień wznowienia testu zakończona sukcesem",
+            "question_relaunch_error": "Próba zmiany ustawień wznowienia testu zakończona błędem"
         },
         "block_user":{
             "title": "(Administrator) Blokada konta",

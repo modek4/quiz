@@ -36,7 +36,11 @@ if ($conn->connect_error) {
             $sql = "DELETE FROM notification WHERE textread=0 AND email = '" . $_SESSION['email']."'";
             mysqli_query($conn, $sql);
             if (@$row_notifications['count(*)']>0) {
-                echo "<i data-count='".@$row_notifications['count(*)']."' class='fa-solid fa-bell bell_animation'></i>";
+                if(@$row_notifications['count(*)']>99){
+                    echo "<i data-count='99+' class='fa-solid fa-bell bell_animation'></i>";
+                }else{
+                    echo "<i data-count='".@$row_notifications['count(*)']."' class='fa-solid fa-bell bell_animation'></i>";
+                }
             } else {
                 echo "<i class='fa-regular fa-bell'></i>";
             }

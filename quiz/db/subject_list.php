@@ -14,7 +14,11 @@ if ($conn->connect_error) {
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $code = $row['term'];
-        $sql = "SELECT subjects.subject AS subject_name, subjects.term AS term, COUNT(questions.id_question) AS number_of_questions FROM subjects LEFT JOIN questions ON subjects.subject = questions.subject WHERE subjects.term in (".$code.") GROUP BY subjects.subject, subjects.term";
+        if($_SESSION['mod']==true || $_SESSION['admin']==true){
+            $sql = "SELECT subjects.subject AS subject_name, subjects.term AS term, COUNT(questions.id_question) AS number_of_questions FROM subjects LEFT JOIN questions ON subjects.subject = questions.subject WHERE subjects.term in (".$code.") GROUP BY subjects.subject, subjects.term";
+        }else{
+            $sql = "SELECT subjects.subject AS subject_name, subjects.term AS term, COUNT(questions.id_question) AS number_of_questions FROM subjects LEFT JOIN questions ON subjects.subject = questions.subject WHERE subjects.term in (".$code.") AND subjects.share = 1 GROUP BY subjects.subject, subjects.term";
+        }
     }
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

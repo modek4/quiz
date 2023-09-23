@@ -9,22 +9,44 @@ if ($conn->connect_error) {
 }else{
     $conn->set_charset("utf8");
     if(isset($_POST['score']) && isset($_POST['question_count']) && isset($_POST['subject']) && isset($_SESSION['email']) && isset($_POST['quiz_start'])){
-        $score=$_POST['score'];
-        $question_count=$_POST['question_count'];
-        $subject=$_POST['subject'];
+        $score = $_POST['score'];
+        $question_count = $_POST['question_count'];
+        $subject = $_POST['subject'];
         $email = $_SESSION['email'];
-        $quiz_start = $_POST['quiz_start'];
+        $time = $_POST['quiz_start'];
         $date = date("Y-m-d H:i:s");
-        $time = strtotime($date) - strtotime($quiz_start);
-        $time = gmdate("H:i:s", $time);
+        $code = $_SESSION['code'];
+        $file_name_change = "../analytic/".$code."_score.json";
+        $file_name_analytic = "../analytic/".$code."-".$subject.".json";
+        $time_sec = explode(":", $time);
+        $time_sec = $time_sec[0]*3600 + $time_sec[1]*60 + $time_sec[2];
+        if($time_sec < 1 || $question_count < 1){
+            add_log(
+                $_SESSION['lang']['logs']['show_quiz']['title'],
+                $_SESSION['lang']['logs']['show_quiz']['relaunch_save_decline'],
+                $_SESSION['email'],
+                "../logs/",
+                $subject
+            );
+            unlink($file_name_change);
+            unlink($file_name_analytic);
+            exit();
+        }
         $result = mysqli_query($conn, "SELECT * FROM scores WHERE `email`='$email' AND `subject`='$subject' AND `end_date`='$date'");
         if (mysqli_num_rows($result) == 0) {
-            $code = $_SESSION['code'];
-            $file_name_change = "../analytic/".$code."_score.json";
             if(file_exists($file_name_change)){
                 $file = fopen($file_name_change, "r");
                 $end_date = fread($file, filesize($file_name_change));
                 fclose($file);
+                if(isset($_POST['relaunch']) && $_POST['relaunch']==1){
+                    add_log(
+                        $_SESSION['lang']['logs']['show_quiz']['title'],
+                        $_SESSION['lang']['logs']['show_quiz']['relaunch_decline'],
+                        $_SESSION['email'],
+                        "../logs/",
+                        $subject
+                    );
+                }
             }else{
                 add_log(
                     $_SESSION['lang']['logs']['save_score']['title'],
@@ -35,8 +57,6 @@ if ($conn->connect_error) {
                         "subject" => $subject,
                         "score" => $score,
                         "question_count" => $question_count,
-                        "quiz_start" => $quiz_start,
-                        "date" => $date,
                         "time" => $time
                     )
                 );
@@ -44,7 +64,6 @@ if ($conn->connect_error) {
             $sql = "INSERT INTO scores VALUES ('NULL', '$email', '$subject', '$score', '$question_count', '$date', '$time', '$end_date')";
             if(mysqli_query($conn, $sql)){
                 unlink($file_name_change);
-                $file_name_analytic = "../analytic/".$code."-".$subject.".json";
                 if(file_exists($file_name_analytic)){
                     $file = fopen($file_name_analytic, "r");
                     $anyltic = fread($file, filesize($file_name_analytic));
@@ -66,8 +85,6 @@ if ($conn->connect_error) {
                                     "subject" => $subject,
                                     "score" => $score,
                                     "question_count" => $question_count,
-                                    "quiz_start" => $quiz_start,
-                                    "date" => $date,
                                     "time" => $time
                                 )
                             );
@@ -81,8 +98,6 @@ if ($conn->connect_error) {
                                     "subject" => $subject,
                                     "score" => $score,
                                     "question_count" => $question_count,
-                                    "quiz_start" => $quiz_start,
-                                    "date" => $date,
                                     "time" => $time
                                 )
                             );
@@ -97,8 +112,6 @@ if ($conn->connect_error) {
                                 "subject" => $subject,
                                 "score" => $score,
                                 "question_count" => $question_count,
-                                "quiz_start" => $quiz_start,
-                                "date" => $date,
                                 "time" => $time
                             )
                         );
@@ -113,8 +126,6 @@ if ($conn->connect_error) {
                             "subject" => $subject,
                             "score" => $score,
                             "question_count" => $question_count,
-                            "quiz_start" => $quiz_start,
-                            "date" => $date,
                             "time" => $time
                         )
                     );
@@ -129,8 +140,6 @@ if ($conn->connect_error) {
                         "subject" => $subject,
                         "score" => $score,
                         "question_count" => $question_count,
-                        "quiz_start" => $quiz_start,
-                        "date" => $date,
                         "time" => $time
                     )
                 );
@@ -145,8 +154,6 @@ if ($conn->connect_error) {
                     "subject" => $subject,
                     "score" => $score,
                     "question_count" => $question_count,
-                    "quiz_start" => $quiz_start,
-                    "date" => $date,
                     "time" => $time
                 )
             );

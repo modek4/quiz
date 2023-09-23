@@ -1304,6 +1304,95 @@
                         justify-content: center;
                         align-items: center;
                         flex-wrap: wrap;
+                        &_watch_user{
+                            width: 100%;
+                            height: 100%;
+                            &_header{
+                                width: 100%;
+                                height: 10%;
+                                text-align: center;
+                                background-color: var(--background-color-login);
+                                padding: var(--margin) 0;
+                                font-size: var(--font-size);
+                                color: var(--color);
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                position: relative;
+                                .watch_user_score, .watch_user_subject, .reload_users_user{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    flex-wrap: wrap;
+                                    padding: 0 var(--padding);
+                                }
+                                .reload_users_user, .watch_user_score{
+                                    font-size: calc(var(--font-size)*1.5);
+                                    cursor: pointer;
+                                    transition: .2s ease-in-out;
+                                    flex-direction: column;
+                                    span{
+                                        font-size: var(--font-size-min);
+                                    }
+                                }
+                            }
+                            @media screen and (max-width: 768px){
+                                &_header{
+                                    font-size: var(--font-size-min);
+                                }
+                            }
+                            @media screen and (max-width: 350px){
+                                &_header{
+                                    .watch_user_subject{
+                                        display: none;
+                                    }
+                                }
+                            }
+                            &_content{
+                                width: 100%;
+                                height: 90%;
+                                overflow-y: auto;
+                                &_item{
+                                    margin: 1%;
+                                    width: 98%;
+                                    padding: var(--padding-min) var(--margin) 0 var(--margin);
+                                    border: calc(var(--margin)/8) solid var(--background-color-login);
+                                    border-radius: var(--border-radius);
+                                    color: var(--color);
+                                    transition: .2s ease-in-out;
+                                    &:hover{
+                                        cursor: pointer;
+                                        border: calc(var(--margin)/8) solid var(--accent);
+                                        transition: .2s ease-in-out;
+                                    }
+                                    h3{
+                                        font-size: var(--font-size);
+                                    }
+                                    .users_user_info{
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        width: 100%;
+                                        margin-bottom: .2em;
+                                        font-size: var(--font-size);
+                                    }
+                                    .watch_user_answers{
+                                        width: 100%;
+                                        display: none;
+                                        justify-content: left;
+                                        align-items: center;
+                                        flex-wrap: wrap;
+                                        flex-direction: column;
+                                        &_item{
+                                            width: 100%;
+                                        }
+                                        & .radio{
+                                            width: 100% !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         &_left{
                             width: 55%;
                             height: 100%;
@@ -1398,34 +1487,15 @@
                             &_actions{
                                 width: 100%;
                                 height: 10%;
-                                div:nth-child(1){
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                flex-wrap: wrap;
+                                flex-direction: row;
+                                .user_email{
                                     height: 50%;
                                     width: 100%;
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
                                     font-size: var(--font-size);
-                                    color: var(--color);
-                                    transition: .2s ease-in-out;
-                                    position: relative;
-                                    input{
-                                        position: relative;
-                                        top: 2px;
-                                        display: flex;
-                                        align-items: center;
-                                        font-size: var(--font-size);
-                                        border: none;
-                                        outline: none;
-                                        background-color: transparent;
-                                    }
-                                    i{
-                                        cursor: pointer;
-                                    }
-                                }
-                                .user_menu{
-                                    height: 50%;
-                                    font-size: var(--font-size);
-                                    width: 100%;
                                     display: flex;
                                     flex-wrap: wrap;
                                     justify-content: center;
@@ -1451,6 +1521,41 @@
                                                 color: var(--correct-dark);
                                                 border: calc(var(--margin)/8) solid var(--correct-dark);
                                             }
+                                        }
+                                    }
+                                }
+                                .user_buttons{
+                                    height: 50%;
+                                    width: 100%;
+                                    font-size: var(--font-size);
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    justify-content: center;
+                                    align-items: center;
+                                    span{
+                                        width: 29.33%;
+                                        margin: 0 2%;
+                                        padding: .1em 0;
+                                        cursor: pointer;
+                                        border-radius: var(--border-radius);
+                                        text-align: center;
+                                        &:hover > i{
+                                            color: var(--accent);
+                                        }
+                                        i{
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            font-size: calc(var(--font-size)*1.5);
+                                            transition: .2s ease-in-out;
+                                        }
+                                        &.block_user{
+                                            color: var(--incorrect-dark);
+                                            border: calc(var(--margin)/8) solid var(--incorrect-dark);
+                                        }
+                                        &.unblock_user{
+                                            color: var(--correct-dark);
+                                            border: calc(var(--margin)/8) solid var(--correct-dark);
                                         }
                                     }
                                 }
@@ -1769,11 +1874,42 @@
                                     }
                                 }
                             }
-                            &_devices{
+                            &_progress{
                                 width: 100%;
-                                height: 35%;
+                                height: 15%;
                                 display: flex;
                                 justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                h6{
+                                    width: 100%;
+                                    text-align: center;
+                                    font-size: calc(var(--font-size-min)/1.5);
+                                    height: 66.66%;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                                &_bar{
+                                    display: flex;
+                                    justify-content: left;
+                                    align-items: center;
+                                    flex-direction: row;
+                                    width: 100%;
+                                    height: 33.33%;
+                                    background-color: var(--alpha);
+                                    div{
+                                        height: 100%;
+                                        background-color: var(--accent);
+                                    }
+                                }
+                            }
+                            &_devices{
+                                width: 100%;
+                                height: 25%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                                 font-size: var(--font-size);
                                 i{
                                     padding: 0 var(--padding-min);
@@ -1825,6 +1961,9 @@
                                         i{
                                             padding: 0 var(--padding-min);
                                             color: var(--correct-dark);
+                                            &.blocked{
+                                                color: var(--incorrect-dark);
+                                            }
                                         }
                                         span{
                                             user-select: text;
@@ -1839,12 +1978,14 @@
                         }
                         @media screen and (max-width: 1200px){
                             &_item{
-                                width: calc(50% - var(--margin)*2);
+                                width: calc(50% - 2%);
+                                margin: calc(var(--margin)/4) 1%;
                             }
                         }
                         @media screen and (max-width: 768px){
                             &_item{
-                                width: calc(100% - var(--margin)*2);
+                                width: calc(100% - 2%);
+                                margin: calc(var(--margin)/4) 1%;
                             }
                         }
                     }
@@ -1879,7 +2020,7 @@
                         &:hover{
                             cursor: pointer;
                         }
-                        &.active{
+                        &.reload_active{
                             animation: spin 1s linear infinite;
                         }
                         @keyframes spin {
@@ -1920,6 +2061,13 @@
                         padding: 1em;
                         background-color: var(--button-background);
                         border-radius: var(--border-radius);
+                        p{
+                            user-select: text;
+                            -webkit-user-select: text;
+                            -moz-user-select: text;
+                            -ms-user-select: text;
+                            -o-user-select: text;
+                        }
                         &_error{
                             border: solid .2em var(--incorrect-dark);
                             h3,span,p,&_data{
@@ -1932,6 +2080,11 @@
                             text-align: center;
                             &.user{
                                 color: var(--accent);
+                                user-select: text;
+                                -webkit-user-select: text;
+                                -moz-user-select: text;
+                                -ms-user-select: text;
+                                -o-user-select: text;
                             }
                         }
                         &_data{

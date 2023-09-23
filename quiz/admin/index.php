@@ -13,11 +13,35 @@ try {
         throw new Exception($_SESSION['lang']['database']['error']);
     }
     $conn->set_charset("utf8");
-    echo "<div class='navbar'>";
-    $sql = "UPDATE quiz_users SET status = CASE WHEN last_login > NOW() - INTERVAL 30 SECOND THEN 'online' ELSE 'offline' END";
-    if(!mysqli_query($conn, $sql)){
-        throw new Exception($_SESSION['lang']['database']['error']);
+    function update_users_status($conn){
+        $file_href = "../active.json";
+        if(!file_exists($file_href)){
+            $active = array();
+            $fp = fopen($file_href, 'w');
+            fwrite($fp, json_encode($active, JSON_PRETTY_PRINT));
+            fclose($fp);
+        }else{
+            $active = json_decode(file_get_contents($file_href), true);
+            $actual_date = date('Y-m-d H:i:s', time() - 60);
+            foreach($active as $key => $value){
+                if($value['time'] >= $actual_date){
+                    $active[$key]['status'] = "online";
+                    $active[$key]['time'] = date('Y-m-d H:i:s', time());
+                }else{
+                    $active[$key]['status'] = "offline";
+                }
+                $sql = "UPDATE quiz_users SET status = '".$active[$key]['status']."', last_login = '".$active[$key]['time']."' WHERE email = '".$active[$key]['email']."'";
+                if(!mysqli_query($conn, $sql)){
+                    throw new Exception($_SESSION['lang']['database']['error']);
+                }
+            }
+            $fp = fopen($file_href, 'w');
+            fwrite($fp, json_encode($active, JSON_PRETTY_PRINT));
+            fclose($fp);
+        }
     }
+    update_users_status($conn);
+    echo "<div class='navbar'>";
     if(isset($_POST['navbar'])){
         $sql_count_reports = "SELECT count(*) as count FROM reports";
         if(mysqli_query($conn, $sql_count_reports)){
@@ -478,10 +502,6 @@ try {
             $lang_text = $_SESSION['lang']['admin']['users'];
             $sql = "SELECT count(*) FROM quiz_users";
             $count_all_users = mysqli_fetch_array(mysqli_query($conn, $sql))[0];
-            $sql = "UPDATE quiz_users SET status = CASE WHEN last_login > NOW() - INTERVAL 30 SECOND THEN 'online' ELSE 'offline' END";
-            if(!mysqli_query($conn, $sql)){
-                throw new Exception($_SESSION['lang']['database']['error']);
-            }
             $sql = "SELECT * FROM quiz_users order by status desc, last_login desc";
             if($result = mysqli_query($conn, $sql)){
                 echo "<div class='users'>
@@ -518,11 +538,32 @@ try {
                         $count_location++;
                     }
                 }
+                $progress_quiz = 0;
+                $progress_name = "";
+                $file_name_live = "../analytic/".$row['code']."_score.json";
+                if(file_exists($file_name_live)){
+                    $json = json_decode(file_get_contents($file_name_live), true);
+                    $temp_progress = 0;
+                    foreach($json as $record){
+                        if($record['date'] != null){
+                            $progress_quiz++;
+                        }
+                        $progress_name = $record['subject'];
+                        $temp_progress = $record['id'];
+                    }
+                    $progress_quiz = round($progress_quiz / $temp_progress * 100);
+                }
                 echo "<div class='users_list_content_item' data-id='".$row['id']."'>
                     <h3>
                         <span class='".$row['status']."'>•</span>
                         <span>".$row['email']."</span>
                     </h3>
+                    <div class='users_list_content_item_progress'>";
+                    echo "<h6>".$progress_name."</h6>
+                        <div class='users_list_content_item_progress_bar'>
+                            <div style='width:".$progress_quiz."%'></div>
+                        </div>
+                    </div>
                     <div class='users_list_content_item_devices'>
                         <i class='fa-solid fa-display'></i>";
                         $sql_limits = "SELECT * FROM quiz_admin";
@@ -557,9 +598,13 @@ try {
                             echo "<span>".$date."</span>
                         </div>
                         <div>
-                            <span>".$row['code']."</span>
-                            <i class='fa-solid fa-shield-halved'></i>
-                        </div>
+                            <span>".$row['code']."</span>";
+                            if($row['dark']==-1){
+                                echo "<i class='fa-solid fa-shield-halved blocked'></i>";
+                            }else{
+                                echo "<i class='fa-solid fa-shield-halved'></i>";
+                            }
+                        echo "</div>
                     </div>
                 </div>";
             }
@@ -568,7 +613,7 @@ try {
                 </div>
             </div>";
             }
-        } else if($_POST['content']=='logs'){
+        }else if($_POST['content']=='logs'){
             $logs = scandir("../logs");
             unset($logs[0]);
             unset($logs[1]);
@@ -577,7 +622,7 @@ try {
             });
             echo "<div class='logs'>
                 <div class='logs_content'>
-                <i class='fa-solid fa-rotate-right reload_logs'></i>
+                <i class='fa-solid fa-arrows-rotate reload_logs'></i>
                 <select class='logs_content_select'>";
                 if(isset($_POST['log'])){
                     if($_POST['log'] == 0){
@@ -604,28 +649,39 @@ try {
                 $json = array_reverse($json);
                 foreach($json as $record){
                     if(isset($record['data'])){
-                        if(is_numeric($record['data'])){
+                        if(is_numeric($record['data']) || $record['title'] == null || $record['text'] == null || $record['user'] == null || $record['date'] == null){
                             echo "<div class='logs_content_item logs_content_item_error'>";
                         }else{
                             echo "<div class='logs_content_item'>";
                         }
                     }else{
-                        echo "<div class='logs_content_item'>";
+                        if($record['title'] == null || $record['text'] == null || $record['user'] == null || $record['date'] == null){
+                            echo "<div class='logs_content_item logs_content_item_error'>";
+                        }else{
+                            echo "<div class='logs_content_item'>";
+                        }
                     }
-                    echo "<h3>".$record['id'].". ".$record['title']."</h3>
-                    <p>".$record['text']."</p>";
+                    $title_log = $record['title'] == null ? 'N/A' : $record['title'];
+                    $text_log = $record['text'] == null ? 'N/A' : $record['text'];
+                    $user_log = $record['user'] == null ? 'N/A' : $record['user'];
+                    $date_log = $record['date'] == null ? 'N/A' : $record['date'];
+                    echo "<h3>".$record['id'].". ".$title_log."</h3>
+                    <p>".$text_log."</p>";
                     if(isset($record['data'])){
                         echo "<div class='logs_content_item_data'>";
                         if (is_array($record['data']) || is_object($record['data'])){
                             foreach($record['data'] as $data => $value){
-                                echo "<p>".$data.": ".$value."</p>";
+                                $data_log = $data == null ? 'N/A' : $data;
+                                $value_log = $value == null ? 'N/A' : $value;
+                                echo "<p>".$data_log.": ".$value_log."</p>";
                             }
                         }else{
-                            echo "<p>".$record['data']."</p>";
+                            $data_log = $record['data'] == null ? 'N/A' : $record['data'];
+                            echo "<p>".$data_log."</p>";
                         }
                         echo "</div>";
                     }
-                    echo "<span><span class='user'>".$record['user']."</span> - ".$record['date']."</span></div>";
+                    echo "<span><span class='user'>".$user_log."</span> - ".$date_log."</span></div>";
                 }
             echo "</div></div>";
         }

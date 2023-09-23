@@ -47,10 +47,8 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
 		$user_email = htmlentities($_POST['email_login'], ENT_QUOTES, "UTF-8");
 		if ($result = @$conn->query(
 		sprintf("SELECT * FROM `quiz_users` WHERE email='%s'",
-		mysqli_real_escape_string($conn, $user_email))))
-		{
-			if($result->num_rows==1)
-			{
+		mysqli_real_escape_string($conn, $user_email)))){
+			if($result->num_rows==1){
                 $row_login = $result->fetch_assoc();
                 if(password_verify($user_password,$row_login['password'])){
                     if($row_login['dark'] == -1){
@@ -75,89 +73,219 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
                         } else {
                             $ip = $_SERVER['REMOTE_ADDR'];
                         }
+                        $agent_mappings = array(
+                            'Windows NT 10.0' => 'Windows 10',
+                            'Windows NT 6.3'  => 'Windows 8.1',
+                            'Windows NT 6.2'  => 'Windows 8',
+                            'Windows NT 6.1'  => 'Windows 7',
+                            'Windows NT 6.0'  => 'Windows Vista',
+                            'Windows NT 5.1'  => 'Windows XP',
+                            'Windows NT 5.0'  => 'Windows 2000',
+                            'Android' => array(
+                                'samsung'    => 'Samsung',
+                                'xiaomi'     => 'Xiaomi',
+                                'huawei'     => 'Huawei',
+                                'oppo'       => 'Oppo',
+                                'vivo'       => 'Vivo',
+                                'realme'     => 'Realme',
+                                'oneplus'    => 'OnePlus',
+                                'asus'       => 'Asus',
+                                'sony'       => 'Sony',
+                                'nokia'      => 'Nokia',
+                                'lg'         => 'LG',
+                                'htc'        => 'HTC',
+                                'lenovo'     => 'Lenovo',
+                                'motorola'   => 'Motorola',
+                                'google'     => 'Google',
+                                'blackberry' => 'BlackBerry',
+                                'acer'       => 'Acer',
+                                'alcatel'    => 'Alcatel',
+                                'amazon'     => 'Amazon',
+                                'archos'     => 'Archos',
+                                'benq'       => 'BenQ',
+                                'xiaoxin'    => 'Xiaoxin',
+                                'zopo'       => 'ZOPO',
+                                'meizu'      => 'Meizu',
+                                'lenovo'     => 'Lenovo',
+                                'sharp'      => 'Sharp',
+                                'tecno'      => 'Tecno',
+                                'leeco'      => 'LeEco',
+                                'gionee'     => 'Gionee',
+                                'infinix'    => 'Infinix',
+                                'panasonic'  => 'Panasonic',
+                                'wiko'       => 'Wiko',
+                                'micromax'   => 'Micromax',
+                                'blu'        => 'BLU',
+                                'verykool'   => 'Verykool',
+                                'mobiistar'  => 'Mobiistar',
+                                'vodafone'   => 'Vodafone',
+                                'meitu'      => 'Meitu',
+                                'zuk'        => 'ZUK',
+                                'vsmart'     => 'Vsmart',
+                                'energizer'  => 'Energizer',
+                                'fairphone'  => 'Fairphone',
+                                'essential'  => 'Essential',
+                                'honor'      => 'Honor',
+                                'tcl'        => 'TCL',
+                                'toshiba'    => 'Toshiba',
+                                'zte'        => 'ZTE',
+                                'cat'        => 'CAT',
+                                'landvo'     => 'Landvo',
+                                'bluboo'     => 'Bluboo',
+                                'doogee'     => 'Doogee',
+                                'elephone'   => 'Elephone',
+                                'homtom'     => 'HomTom',
+                                'umidigi'    => 'UMIDIGI',
+                                'vernee'     => 'Vernee',
+                                'wileyfox'   => 'Wileyfox',
+                                'xolo'       => 'Xolo',
+                                'yota'       => 'Yota',
+                                'zte'        => 'ZTE',
+                                'maxwest'    => 'Maxwest',
+                                'aligator'   => 'Alligator',
+                                'plum'       => 'Plum',
+                                'microsoft'  => 'Microsoft',
+                                'fujitsu'    => 'Fujitsu',
+                                'sharp'      => 'Sharp',
+                                'vaio'       => 'VAIO',
+                                'hisense'    => 'Hisense',
+                                'symphony'   => 'Symphony',
+                                'tecno'      => 'Tecno',
+                                'maxcom'     => 'Maxcom',
+                                'gigabyte'   => 'Gigabyte',
+                                'yandex'     => 'Yandex',
+                                'hp'         => 'HP',
+                                'lenovo'     => 'Lenovo',
+                                'zte'        => 'ZTE',
+                                'acool'      => 'ACOOL',
+                                'blackshark' => 'Black Shark',
+                                'nubia'      => 'Nubia',
+                                'realme'     => 'Realme',
+                                'infinix'    => 'Infinix',
+                                'palm'       => 'Palm',
+                                'redmagic'   => 'RedMagic',
+                                'sugar'      => 'Sugar',
+                                'vernee'     => 'Vernee',
+                                'bq'         => 'BQ',
+                                'irbis'      => 'Irbis',
+                                'maxcom'     => 'Maxcom',
+                                'neffos'     => 'Neffos',
+                                'wiko'       => 'Wiko',
+                                'umidigi'    => 'UMIDIGI',
+                                'alcatel'    => 'Alcatel',
+                                'casio'      => 'Casio',
+                                'cherry'     => 'Cherry',
+                                'crosscall'  => 'Crosscall',
+                                'cubot'      => 'Cubot',
+                                'dexp'       => 'DEXP',
+                                'digma'      => 'Digma',
+                                'elephone'   => 'Elephone',
+                                'energizer'  => 'Energizer',
+                                'evolveo'    => 'Evolveo',
+                                'fairphone'  => 'Fairphone',
+                                'freetel'    => 'Freetel',
+                                'garmin'     => 'Garmin',
+                                'geecoo'     => 'Geecoo',
+                                'gigabyte'   => 'Gigabyte',
+                                'gigaset'    => 'Gigaset',
+                                'google'     => 'Google',
+                                'hammer'     => 'Hammer',
+                                'hp'         => 'HP',
+                                'htc'        => 'HTC',
+                                'inew'       => 'iNew',
+                                'jolla'      => 'Jolla',
+                                'karbonn'    => 'Karbonn',
+                                'kazam'      => 'Kazam',
+                                'leagoo'     => 'Leagoo',
+                                'leeco'      => 'LeEco',
+                                'leotec'     => 'Leotec',
+                                'maxwest'    => 'Maxwest',
+                                'medion'     => 'Medion',
+                                'meitu'      => 'Meitu',
+                                'meizu'      => 'Meizu',
+                                'micromax'   => 'Micromax',
+                                'microsoft'  => 'Microsoft',
+                                'mobiistar'  => 'Mobiistar',
+                                'myphone'    => 'MyPhone',
+                                'nec'        => 'NEC',
+                                'nexian'     => 'Nexian',
+                                'nokia'      => 'Nokia',
+                                'nubia'      => 'Nubia',
+                                'nuu'        => 'NUU',
+                                'oneplus'    => 'OnePlus',
+                                'onn'        => 'Onn',
+                                'oukitel'    => 'Oukitel',
+                                'palm'       => 'Palm',
+                                'panasonic'  => 'Panasonic',
+                                'plum'       => 'Plum',
+                                'posh'       => 'Posh',
+                                'qmobile'    => 'QMobile',
+                                'razer'      => 'Razer',
+                                'redmagic'   => 'RedMagic',
+                                'ruggear'    => 'RugGear',
+                                'sagem'      => 'Sagem',
+                                'sendo'      => 'Sendo',
+                                'sharp'      => 'Sharp',
+                                'siemens'    => 'Siemens',
+                                'silentcircle' => 'Silent Circle',
+                                'sirinlabs'  => 'SIRIN LABS',
+                                'spice'      => 'Spice',
+                                'tecno'      => 'Tecno',
+                                'thl'        => 'THL',
+                                'toshiba'    => 'Toshiba',
+                                'tp-link'    => 'TP-Link',
+                                'ulefone'    => 'Ulefone',
+                                'umi'        => 'UMI',
+                                'vertu'      => 'Vertu',
+                                'verykool'   => 'Verykool',
+                                'vsmart'     => 'Vsmart',
+                                'vodafone'   => 'Vodafone',
+                                'voto'       => 'Voto',
+                                'walton'     => 'Walton',
+                                'wileyfox'   => 'Wileyfox',
+                                'xgody'      => 'Xgody',
+                                'yota'       => 'Yota',
+                                'zopo'       => 'ZOPO',
+                                'zte'        => 'ZTE',
+                                'zuk'        => 'ZUK',
+                                'zuum'       => 'Zuum'
+                            ),
+                            'iPhone'            => 'iPhone',
+                            'iPad'              => 'iPad',
+                            'Apple TV'          => 'Apple TV',
+                            'Apple Watch'       => 'Apple Watch',
+                            'Macintosh'         => 'Macintosh',
+                            'SmartTV'           => array(
+                                'samsung'       => 'Samsung Smart TV',
+                                'lg'            => 'LG Smart TV',
+                                'sony'          => 'Sony Smart TV'
+                            ),
+                            'Linux'             => array(
+                                'Ubuntu'        => 'Ubuntu Linux',
+                                'Debian'        => 'Debian Linux',
+                                'Fedora'        => 'Fedora Linux',
+                                'Red Hat'       => 'Red Hat Linux',
+                                'CentOS'        => 'CentOS Linux',
+                                'Mint'          => 'Linux Mint',
+                                'Arch'          => 'Arch Linux'
+                            )
+                        );
+                        $result_agent = 'Unknown';
                         $user_agent = $_SERVER['HTTP_USER_AGENT'];
-                        $first_index = strpos($user_agent, '(');
-                        $last_index = strpos($user_agent, ')');
-                        if ($first_index !== false && $last_index !== false) {
-                            $result_agent = substr($user_agent, $first_index + 1, $last_index - $first_index - 1);
-                            $result_agent = trim($result_agent);
-                        } else {
-                            $result_agent ="";
-                        }
-                        if(strpos($result_agent, "Windows") !== false){
-                            if(strpos($result_agent, "Windows NT 10.0") !== false){
-                                $result_agent = "Windows 10";
-                            }elseif(strpos($result_agent, "Windows NT 6.3") !== false){
-                                $result_agent = "Windows 8.1";
-                            }elseif(strpos($result_agent, "Windows NT 6.2") !== false){
-                                $result_agent = "Windows 8";
-                            }elseif(strpos($result_agent, "Windows NT 6.1") !== false){
-                                $result_agent = "Windows 7";
-                            }elseif(strpos($result_agent, "Windows NT 6.0") !== false){
-                                $result_agent = "Windows Vista";
-                            }elseif(strpos($result_agent, "Windows NT 5.1") !== false){
-                                $result_agent = "Windows XP";
-                            }elseif(strpos($result_agent, "Windows NT 5.0") !== false){
-                                $result_agent = "Windows 2000";
-                            }else{
-                                $result_agent = "Windows";
+                        foreach ($agent_mappings as $key => $value) {
+                            if (strpos($user_agent, $key) !== false) {
+                                if (is_array($value)) {
+                                    foreach ($value as $subKey => $subValue) {
+                                        if (strpos(strtolower($user_agent), $subKey) !== false) {
+                                            $result_agent = $subValue;
+                                            break 2;
+                                        }
+                                    }
+                                } else {
+                                    $result_agent = $value;
+                                    break;
+                                }
                             }
-                        }elseif(strpos($result_agent, "Android") !== false){
-                            if(strpos(strtolower($result_agent), "samsung") !== false){
-                                $result_agent = "Samsung";
-                            }elseif(strpos(strtolower($result_agent), "xiaomi") !== false){
-                                $result_agent = "Xiaomi";
-                            }elseif(strpos(strtolower($result_agent), "huawei") !== false){
-                                $result_agent = "Huawei";
-                            }elseif(strpos(strtolower($result_agent), "oppo") !== false){
-                                $result_agent = "Oppo";
-                            }elseif(strpos(strtolower($result_agent), "vivo") !== false){
-                                $result_agent = "Vivo";
-                            }elseif(strpos(strtolower($result_agent), "realme") !== false){
-                                $result_agent = "Realme";
-                            }elseif(strpos(strtolower($result_agent), "oneplus") !== false){
-                                $result_agent = "OnePlus";
-                            }elseif(strpos(strtolower($result_agent), "asus") !== false){
-                                $result_agent = "Asus";
-                            }elseif(strpos(strtolower($result_agent), "sony") !== false){
-                                $result_agent = "Sony";
-                            }elseif(strpos(strtolower($result_agent), "nokia") !== false){
-                                $result_agent = "Nokia";
-                            }elseif(strpos(strtolower($result_agent), "lg") !== false){
-                                $result_agent = "LG";
-                            }elseif(strpos(strtolower($result_agent), "htc") !== false){
-                                $result_agent = "HTC";
-                            }elseif(strpos(strtolower($result_agent), "lenovo") !== false){
-                                $result_agent = "Lenovo";
-                            }elseif(strpos(strtolower($result_agent), "motorola") !== false){
-                                $result_agent = "Motorola";
-                            }elseif(strpos(strtolower($result_agent), "google") !== false){
-                                $result_agent = "Google";
-                            }elseif(strpos(strtolower($result_agent), "blackberry") !== false){
-                                $result_agent = "BlackBerry";
-                            }elseif(strpos(strtolower($result_agent), "acer") !== false){
-                                $result_agent = "Acer";
-                            }elseif(strpos(strtolower($result_agent), "alcatel") !== false){
-                                $result_agent = "Alcatel";
-                            }elseif(strpos(strtolower($result_agent), "amazon") !== false){
-                                $result_agent = "Amazon";
-                            }elseif(strpos(strtolower($result_agent), "archos") !== false){
-                                $result_agent = "Archos";
-                            }elseif(strpos(strtolower($result_agent), "asus") !== false){
-                                $result_agent = "Asus";
-                            }elseif(strpos(strtolower($result_agent), "benq") !== false){
-                                $result_agent = "BenQ";
-                            }else{
-                                $result_agent = "Android";
-                            }
-                        }elseif(strpos($result_agent, "iPhone") !== false){
-                            $result_agent = "iPhone";
-                        }elseif(strpos($result_agent, "iPad") !== false){
-                            $result_agent = "iPad";
-                        }elseif(strpos($result_agent, "Macintosh") !== false){
-                            $result_agent = "Macintosh";
-                        }else{
-                            $result_agent = "Unknown";
                         }
                         $devices_info = $result_agent." | ".$ip;
                         $email_devices = $row_login["email"];
@@ -183,29 +311,8 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
                         if($devices_correct == false){
                             $sql = "INSERT INTO `devices` VALUES ('NULL', '$devices_info', '1', '$email_devices','$date_last_login')";
                             $conn->query($sql);
-                            if(strpos($devices_info, 'Android') !== false){
-                                $devices_info_only_device;
-                                $sql = "SELECT * FROM `devices` WHERE `email`='$email_devices'";
-                                $result_devices = $conn->query($sql);
-                                if ($result_devices->num_rows > 0) {
-                                    foreach ($result_devices as $row) {
-                                        if (stripos($row['udevices'], $devices_info_only_device) !== false) {
-                                            $newphonelogin = true;
-                                            $dateNotify = date("Y-m-d H:i");
-                                            $sql = "INSERT INTO `notification` VALUES ('NULL', '".$row_login['email']."', '".$lang_text['texts']['new_login_notification']."', '".$lang_text['texts']['new_login_new_phone_notification_text']."<br/>$dateNotify', '1')";
-                                            $conn->query($sql);
-                                        }
-                                    }
-                                }
-                            } else if(strpos($devices_info, 'iPhone') !== false){
-                                $dateNotify = date("Y-m-d H:i");
-                                $sql = "INSERT INTO `notification` VALUES ('NULL', '".$row_login['email']."', '".$lang_text['texts']['new_login_notification']."', '".$lang_text['texts']['new_login_phone_notification_text']."<br/>$dateNotify', '1')";
-                                $conn->query($sql);
-                            } else {
-                                $dateNotify = date("Y-m-d H:i");
-                                $sql = "INSERT INTO `notification` VALUES ('NULL', '".$row_login['email']."', '".$lang_text['texts']['new_login_notification']."', '".$lang_text['texts']['new_login_device_notification_text']."<br/>$dateNotify', '1')";
-                                $conn->query($sql);
-                            }
+                            $sql = "INSERT INTO `notification` VALUES ('NULL', '".$row_login['email']."', '".$lang_text['texts']['new_login_notification']."', '".$lang_text['texts']['new_login_device_notification_text']."<br/>$date_last_login', '1')";
+                            $conn->query($sql);
                         }
                         $sql = "UPDATE `quiz_users` SET `last_login`=NOW() WHERE `id`=".$row_login['id'];
                         $conn->query($sql);
@@ -224,6 +331,7 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
                         $row = $result->fetch_assoc();
                         $_SESSION['question_order'] = $row['question_order'];
                         $_SESSION['question_analytic'] = $row['question_analytic'];
+                        $_SESSION['question_relaunch'] = $row['question_relaunch'];
                         $result->free_result();
                         $sql = "SELECT count(*), moderator FROM `users` WHERE `email`='".$_SESSION['email']."' GROUP BY moderator";
                         $result = $conn->query($sql);
@@ -232,7 +340,7 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
                             if($row['moderator'] == 1){
                                 $_SESSION['mod'] = true;
                                 $_SESSION['admin'] = false;
-                            } else if($row['moderator'] == 0){
+                            }else if($row['moderator'] == 0){
                                 $_SESSION['admin'] = true;
                                 $_SESSION['mod'] = false;
                             }else{
@@ -248,8 +356,19 @@ if ((isset($_POST['email_login'])) && (isset($_POST['password_login']))){
                             "./logs/"
                         );
                         $result->free_result();
-                        header('Location: ../quiz');
-                        exit();
+                        if(isset($_SESSION['email']) && $_SESSION['email'] != ""){
+                            header('Location: ../quiz');
+                            exit();
+                        }else{
+                            $_SESSION['error_login'] = '<span style="color:red">'.$lang_text['texts']['incorrect_password'].'</span>';
+                            add_log(
+                                $log_text['title'],
+                                $log_text['incorrect_login'],
+                                $user_email,
+                                "./logs/"
+                            );
+                            header('Location: login');
+                        }
                     }
                 }else{
                     $_SESSION['error_login'] = '<span style="color:red">'.$lang_text['texts']['incorrect_password'].'</span>';

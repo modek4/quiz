@@ -62,89 +62,219 @@ if ($connect->connect_error) {
                 } else {
                     $ip = $_SERVER['REMOTE_ADDR'];
                 }
-                $string = $_SERVER['HTTP_USER_AGENT'];
-                $first_index = strpos($string, '(');
-                $last_index = strpos($string, ')');
-                if ($first_index !== false && $last_index !== false) {
-                    $result = substr($string, $first_index + 1, $last_index - $first_index - 1);
-                    $result = trim($result);
-                } else {
-                    $result ="";
-                }
-                if(strpos($result, "Windows") !== false){
-                    if(strpos($result, "Windows NT 10.0") !== false){
-                        $result = "Windows 10";
-                    }elseif(strpos($result, "Windows NT 6.3") !== false){
-                        $result = "Windows 8.1";
-                    }elseif(strpos($result, "Windows NT 6.2") !== false){
-                        $result = "Windows 8";
-                    }elseif(strpos($result, "Windows NT 6.1") !== false){
-                        $result = "Windows 7";
-                    }elseif(strpos($result, "Windows NT 6.0") !== false){
-                        $result = "Windows Vista";
-                    }elseif(strpos($result, "Windows NT 5.1") !== false){
-                        $result = "Windows XP";
-                    }elseif(strpos($result, "Windows NT 5.0") !== false){
-                        $result = "Windows 2000";
-                    }else{
-                        $result = "Windows";
+                $agent_mappings = array(
+                    'Windows NT 10.0' => 'Windows 10',
+                    'Windows NT 6.3'  => 'Windows 8.1',
+                    'Windows NT 6.2'  => 'Windows 8',
+                    'Windows NT 6.1'  => 'Windows 7',
+                    'Windows NT 6.0'  => 'Windows Vista',
+                    'Windows NT 5.1'  => 'Windows XP',
+                    'Windows NT 5.0'  => 'Windows 2000',
+                    'Android' => array(
+                        'samsung'    => 'Samsung',
+                        'xiaomi'     => 'Xiaomi',
+                        'huawei'     => 'Huawei',
+                        'oppo'       => 'Oppo',
+                        'vivo'       => 'Vivo',
+                        'realme'     => 'Realme',
+                        'oneplus'    => 'OnePlus',
+                        'asus'       => 'Asus',
+                        'sony'       => 'Sony',
+                        'nokia'      => 'Nokia',
+                        'lg'         => 'LG',
+                        'htc'        => 'HTC',
+                        'lenovo'     => 'Lenovo',
+                        'motorola'   => 'Motorola',
+                        'google'     => 'Google',
+                        'blackberry' => 'BlackBerry',
+                        'acer'       => 'Acer',
+                        'alcatel'    => 'Alcatel',
+                        'amazon'     => 'Amazon',
+                        'archos'     => 'Archos',
+                        'benq'       => 'BenQ',
+                        'xiaoxin'    => 'Xiaoxin',
+                        'zopo'       => 'ZOPO',
+                        'meizu'      => 'Meizu',
+                        'lenovo'     => 'Lenovo',
+                        'sharp'      => 'Sharp',
+                        'tecno'      => 'Tecno',
+                        'leeco'      => 'LeEco',
+                        'gionee'     => 'Gionee',
+                        'infinix'    => 'Infinix',
+                        'panasonic'  => 'Panasonic',
+                        'wiko'       => 'Wiko',
+                        'micromax'   => 'Micromax',
+                        'blu'        => 'BLU',
+                        'verykool'   => 'Verykool',
+                        'mobiistar'  => 'Mobiistar',
+                        'vodafone'   => 'Vodafone',
+                        'meitu'      => 'Meitu',
+                        'zuk'        => 'ZUK',
+                        'vsmart'     => 'Vsmart',
+                        'energizer'  => 'Energizer',
+                        'fairphone'  => 'Fairphone',
+                        'essential'  => 'Essential',
+                        'honor'      => 'Honor',
+                        'tcl'        => 'TCL',
+                        'toshiba'    => 'Toshiba',
+                        'zte'        => 'ZTE',
+                        'cat'        => 'CAT',
+                        'landvo'     => 'Landvo',
+                        'bluboo'     => 'Bluboo',
+                        'doogee'     => 'Doogee',
+                        'elephone'   => 'Elephone',
+                        'homtom'     => 'HomTom',
+                        'umidigi'    => 'UMIDIGI',
+                        'vernee'     => 'Vernee',
+                        'wileyfox'   => 'Wileyfox',
+                        'xolo'       => 'Xolo',
+                        'yota'       => 'Yota',
+                        'zte'        => 'ZTE',
+                        'maxwest'    => 'Maxwest',
+                        'aligator'   => 'Alligator',
+                        'plum'       => 'Plum',
+                        'microsoft'  => 'Microsoft',
+                        'fujitsu'    => 'Fujitsu',
+                        'sharp'      => 'Sharp',
+                        'vaio'       => 'VAIO',
+                        'hisense'    => 'Hisense',
+                        'symphony'   => 'Symphony',
+                        'tecno'      => 'Tecno',
+                        'maxcom'     => 'Maxcom',
+                        'gigabyte'   => 'Gigabyte',
+                        'yandex'     => 'Yandex',
+                        'hp'         => 'HP',
+                        'lenovo'     => 'Lenovo',
+                        'zte'        => 'ZTE',
+                        'acool'      => 'ACOOL',
+                        'blackshark' => 'Black Shark',
+                        'nubia'      => 'Nubia',
+                        'realme'     => 'Realme',
+                        'infinix'    => 'Infinix',
+                        'palm'       => 'Palm',
+                        'redmagic'   => 'RedMagic',
+                        'sugar'      => 'Sugar',
+                        'vernee'     => 'Vernee',
+                        'bq'         => 'BQ',
+                        'irbis'      => 'Irbis',
+                        'maxcom'     => 'Maxcom',
+                        'neffos'     => 'Neffos',
+                        'wiko'       => 'Wiko',
+                        'umidigi'    => 'UMIDIGI',
+                        'alcatel'    => 'Alcatel',
+                        'casio'      => 'Casio',
+                        'cherry'     => 'Cherry',
+                        'crosscall'  => 'Crosscall',
+                        'cubot'      => 'Cubot',
+                        'dexp'       => 'DEXP',
+                        'digma'      => 'Digma',
+                        'elephone'   => 'Elephone',
+                        'energizer'  => 'Energizer',
+                        'evolveo'    => 'Evolveo',
+                        'fairphone'  => 'Fairphone',
+                        'freetel'    => 'Freetel',
+                        'garmin'     => 'Garmin',
+                        'geecoo'     => 'Geecoo',
+                        'gigabyte'   => 'Gigabyte',
+                        'gigaset'    => 'Gigaset',
+                        'google'     => 'Google',
+                        'hammer'     => 'Hammer',
+                        'hp'         => 'HP',
+                        'htc'        => 'HTC',
+                        'inew'       => 'iNew',
+                        'jolla'      => 'Jolla',
+                        'karbonn'    => 'Karbonn',
+                        'kazam'      => 'Kazam',
+                        'leagoo'     => 'Leagoo',
+                        'leeco'      => 'LeEco',
+                        'leotec'     => 'Leotec',
+                        'maxwest'    => 'Maxwest',
+                        'medion'     => 'Medion',
+                        'meitu'      => 'Meitu',
+                        'meizu'      => 'Meizu',
+                        'micromax'   => 'Micromax',
+                        'microsoft'  => 'Microsoft',
+                        'mobiistar'  => 'Mobiistar',
+                        'myphone'    => 'MyPhone',
+                        'nec'        => 'NEC',
+                        'nexian'     => 'Nexian',
+                        'nokia'      => 'Nokia',
+                        'nubia'      => 'Nubia',
+                        'nuu'        => 'NUU',
+                        'oneplus'    => 'OnePlus',
+                        'onn'        => 'Onn',
+                        'oukitel'    => 'Oukitel',
+                        'palm'       => 'Palm',
+                        'panasonic'  => 'Panasonic',
+                        'plum'       => 'Plum',
+                        'posh'       => 'Posh',
+                        'qmobile'    => 'QMobile',
+                        'razer'      => 'Razer',
+                        'redmagic'   => 'RedMagic',
+                        'ruggear'    => 'RugGear',
+                        'sagem'      => 'Sagem',
+                        'sendo'      => 'Sendo',
+                        'sharp'      => 'Sharp',
+                        'siemens'    => 'Siemens',
+                        'silentcircle' => 'Silent Circle',
+                        'sirinlabs'  => 'SIRIN LABS',
+                        'spice'      => 'Spice',
+                        'tecno'      => 'Tecno',
+                        'thl'        => 'THL',
+                        'toshiba'    => 'Toshiba',
+                        'tp-link'    => 'TP-Link',
+                        'ulefone'    => 'Ulefone',
+                        'umi'        => 'UMI',
+                        'vertu'      => 'Vertu',
+                        'verykool'   => 'Verykool',
+                        'vsmart'     => 'Vsmart',
+                        'vodafone'   => 'Vodafone',
+                        'voto'       => 'Voto',
+                        'walton'     => 'Walton',
+                        'wileyfox'   => 'Wileyfox',
+                        'xgody'      => 'Xgody',
+                        'yota'       => 'Yota',
+                        'zopo'       => 'ZOPO',
+                        'zte'        => 'ZTE',
+                        'zuk'        => 'ZUK',
+                        'zuum'       => 'Zuum'
+                    ),
+                    'iPhone'            => 'iPhone',
+                    'iPad'              => 'iPad',
+                    'Apple TV'          => 'Apple TV',
+                    'Apple Watch'       => 'Apple Watch',
+                    'Macintosh'         => 'Macintosh',
+                    'SmartTV'           => array(
+                        'samsung'       => 'Samsung Smart TV',
+                        'lg'            => 'LG Smart TV',
+                        'sony'          => 'Sony Smart TV'
+                    ),
+                    'Linux'             => array(
+                        'Ubuntu'        => 'Ubuntu Linux',
+                        'Debian'        => 'Debian Linux',
+                        'Fedora'        => 'Fedora Linux',
+                        'Red Hat'       => 'Red Hat Linux',
+                        'CentOS'        => 'CentOS Linux',
+                        'Mint'          => 'Linux Mint',
+                        'Arch'          => 'Arch Linux'
+                    )
+                );
+                $result_agent = 'Unknown';
+                $user_agent = $_SERVER['HTTP_USER_AGENT'];
+                foreach ($agent_mappings as $key => $value) {
+                    if (strpos($user_agent, $key) !== false) {
+                        if (is_array($value)) {
+                            foreach ($value as $subKey => $subValue) {
+                                if (strpos(strtolower($user_agent), $subKey) !== false) {
+                                    $result_agent = $subValue;
+                                    break 2;
+                                }
+                            }
+                        } else {
+                            $result_agent = $value;
+                            break;
+                        }
                     }
-                }elseif(strpos($result, "Android") !== false){
-                    if(strpos(strtolower($result), "samsung") !== false){
-                        $result = "Samsung";
-                    }elseif(strpos(strtolower($result), "xiaomi") !== false){
-                        $result = "Xiaomi";
-                    }elseif(strpos(strtolower($result), "huawei") !== false){
-                        $result = "Huawei";
-                    }elseif(strpos(strtolower($result), "oppo") !== false){
-                        $result = "Oppo";
-                    }elseif(strpos(strtolower($result), "vivo") !== false){
-                        $result = "Vivo";
-                    }elseif(strpos(strtolower($result), "realme") !== false){
-                        $result = "Realme";
-                    }elseif(strpos(strtolower($result), "oneplus") !== false){
-                        $result = "OnePlus";
-                    }elseif(strpos(strtolower($result), "asus") !== false){
-                        $result = "Asus";
-                    }elseif(strpos(strtolower($result), "sony") !== false){
-                        $result = "Sony";
-                    }elseif(strpos(strtolower($result), "nokia") !== false){
-                        $result = "Nokia";
-                    }elseif(strpos(strtolower($result), "lg") !== false){
-                        $result = "LG";
-                    }elseif(strpos(strtolower($result), "htc") !== false){
-                        $result = "HTC";
-                    }elseif(strpos(strtolower($result), "lenovo") !== false){
-                        $result = "Lenovo";
-                    }elseif(strpos(strtolower($result), "motorola") !== false){
-                        $result = "Motorola";
-                    }elseif(strpos(strtolower($result), "google") !== false){
-                        $result = "Google";
-                    }elseif(strpos(strtolower($result), "blackberry") !== false){
-                        $result = "BlackBerry";
-                    }elseif(strpos(strtolower($result), "acer") !== false){
-                        $result = "Acer";
-                    }elseif(strpos(strtolower($result), "alcatel") !== false){
-                        $result = "Alcatel";
-                    }elseif(strpos(strtolower($result), "amazon") !== false){
-                        $result = "Amazon";
-                    }elseif(strpos(strtolower($result), "archos") !== false){
-                        $result = "Archos";
-                    }elseif(strpos(strtolower($result), "asus") !== false){
-                        $result = "Asus";
-                    }elseif(strpos(strtolower($result), "benq") !== false){
-                        $result = "BenQ";
-                    }else{
-                        $result = "Android";
-                    }
-                }elseif(strpos($result, "iPhone") !== false){
-                    $result = "iPhone";
-                }elseif(strpos($result, "iPad") !== false){
-                    $result = "iPad";
-                }elseif(strpos($result, "Macintosh") !== false){
-                    $result = "Macintosh";
-                }else{
-                    $result = "Unknown";
                 }
                 $devices_info = $result." | ".$ip;
                 $email_devices = $email;
@@ -163,13 +293,16 @@ if ($connect->connect_error) {
                 $_SESSION['code'] = $code;
                 $_SESSION['admin'] = false;
                 $_SESSION['mod'] = false;
+                $_SESSION['question_order'] = 0;
+                $_SESSION['question_analytic'] = 1;
+                $_SESSION['question_relaunch'] = 1;
                 add_log(
                     $_SESSION['lang']['logs']['register']['title'],
                     $_SESSION['lang']['logs']['register']['success'],
                     $email,
                     "./logs/"
                 );
-                unset($_SESSION['blad_login']);
+                unset($_SESSION['error_login']);
                 header('Location: ../quiz');
                 exit();
             }else{

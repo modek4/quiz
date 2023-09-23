@@ -1288,6 +1288,93 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.admin_menu_content .users_user_settings_content_watch_user {
+  width: 100%;
+  height: 100%;
+}
+.admin_menu_content .users_user_settings_content_watch_user_header {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  background-color: var(--background-color-login);
+  padding: var(--margin) 0;
+  font-size: var(--font-size);
+  color: var(--color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.admin_menu_content .users_user_settings_content_watch_user_header .watch_user_score, .admin_menu_content .users_user_settings_content_watch_user_header .watch_user_subject, .admin_menu_content .users_user_settings_content_watch_user_header .reload_users_user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 var(--padding);
+}
+.admin_menu_content .users_user_settings_content_watch_user_header .reload_users_user, .admin_menu_content .users_user_settings_content_watch_user_header .watch_user_score {
+  font-size: calc(var(--font-size) * 1.5);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  flex-direction: column;
+}
+.admin_menu_content .users_user_settings_content_watch_user_header .reload_users_user span, .admin_menu_content .users_user_settings_content_watch_user_header .watch_user_score span {
+  font-size: var(--font-size-min);
+}
+@media screen and (max-width: 768px) {
+  .admin_menu_content .users_user_settings_content_watch_user_header {
+    font-size: var(--font-size-min);
+  }
+}
+@media screen and (max-width: 350px) {
+  .admin_menu_content .users_user_settings_content_watch_user_header .watch_user_subject {
+    display: none;
+  }
+}
+.admin_menu_content .users_user_settings_content_watch_user_content {
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item {
+  margin: 1%;
+  width: 98%;
+  padding: var(--padding-min) var(--margin) 0 var(--margin);
+  border: calc(var(--margin) / 8) solid var(--background-color-login);
+  border-radius: var(--border-radius);
+  color: var(--color);
+  transition: 0.2s ease-in-out;
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item:hover {
+  cursor: pointer;
+  border: calc(var(--margin) / 8) solid var(--accent);
+  transition: 0.2s ease-in-out;
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item h3 {
+  font-size: var(--font-size);
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item .users_user_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.2em;
+  font-size: var(--font-size);
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item .watch_user_answers {
+  width: 100%;
+  display: none;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item .watch_user_answers_item {
+  width: 100%;
+}
+.admin_menu_content .users_user_settings_content_watch_user_content_item .watch_user_answers .radio {
+  width: 100% !important;
+}
 .admin_menu_content .users_user_settings_content_left {
   width: 55%;
   height: 100%;
@@ -1381,44 +1468,25 @@
 .admin_menu_content .users_user_settings_content_left_actions {
   width: 100%;
   height: 10%;
-}
-.admin_menu_content .users_user_settings_content_left_actions div:nth-child(1) {
-  height: 50%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--font-size);
-  color: var(--color);
-  transition: 0.2s ease-in-out;
-  position: relative;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
-.admin_menu_content .users_user_settings_content_left_actions div:nth-child(1) input {
-  position: relative;
-  top: 2px;
-  display: flex;
-  align-items: center;
-  font-size: var(--font-size);
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-.admin_menu_content .users_user_settings_content_left_actions div:nth-child(1) i {
-  cursor: pointer;
-}
-.admin_menu_content .users_user_settings_content_left_actions .user_menu {
+.admin_menu_content .users_user_settings_content_left_actions .user_email {
   height: 50%;
-  font-size: var(--font-size);
   width: 100%;
+  font-size: var(--font-size);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-.admin_menu_content .users_user_settings_content_left_actions .user_menu span {
+.admin_menu_content .users_user_settings_content_left_actions .user_email span {
   padding: 0 var(--margin);
 }
-.admin_menu_content .users_user_settings_content_left_actions .user_menu span:nth-child(1) {
+.admin_menu_content .users_user_settings_content_left_actions .user_email span:nth-child(1) {
   text-align: center;
   user-select: text;
   -webkit-user-select: text;
@@ -1426,15 +1494,50 @@
   -ms-user-select: text;
   -o-user-select: text;
 }
-.admin_menu_content .users_user_settings_content_left_actions .user_menu span:last-child {
+.admin_menu_content .users_user_settings_content_left_actions .user_email span:last-child {
   cursor: pointer;
   border-radius: var(--border-radius);
 }
-.admin_menu_content .users_user_settings_content_left_actions .user_menu span:last-child.block_user {
+.admin_menu_content .users_user_settings_content_left_actions .user_email span:last-child.block_user {
   color: var(--incorrect-dark);
   border: calc(var(--margin) / 8) solid var(--incorrect-dark);
 }
-.admin_menu_content .users_user_settings_content_left_actions .user_menu span:last-child.unblock_user {
+.admin_menu_content .users_user_settings_content_left_actions .user_email span:last-child.unblock_user {
+  color: var(--correct-dark);
+  border: calc(var(--margin) / 8) solid var(--correct-dark);
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons {
+  height: 50%;
+  width: 100%;
+  font-size: var(--font-size);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons span {
+  width: 29.33%;
+  margin: 0 2%;
+  padding: 0.1em 0;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons span:hover > i {
+  color: var(--accent);
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons span i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(var(--font-size) * 1.5);
+  transition: 0.2s ease-in-out;
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons span.block_user {
+  color: var(--incorrect-dark);
+  border: calc(var(--margin) / 8) solid var(--incorrect-dark);
+}
+.admin_menu_content .users_user_settings_content_left_actions .user_buttons span.unblock_user {
   color: var(--correct-dark);
   border: calc(var(--margin) / 8) solid var(--correct-dark);
 }
@@ -1746,11 +1849,42 @@
     font-size: var(--font-size-min);
   }
 }
-.admin_menu_content .users_list_content_item_devices {
+.admin_menu_content .users_list_content_item_progress {
   width: 100%;
-  height: 35%;
+  height: 15%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.admin_menu_content .users_list_content_item_progress h6 {
+  width: 100%;
+  text-align: center;
+  font-size: calc(var(--font-size-min) / 1.5);
+  height: 66.66%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin_menu_content .users_list_content_item_progress_bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 33.33%;
+  background-color: var(--alpha);
+}
+.admin_menu_content .users_list_content_item_progress_bar div {
+  height: 100%;
+  background-color: var(--accent);
+}
+.admin_menu_content .users_list_content_item_devices {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: var(--font-size);
 }
 .admin_menu_content .users_list_content_item_devices i {
@@ -1806,6 +1940,9 @@
   padding: 0 var(--padding-min);
   color: var(--correct-dark);
 }
+.admin_menu_content .users_list_content_item_bottom div:nth-child(2) i.blocked {
+  color: var(--incorrect-dark);
+}
 .admin_menu_content .users_list_content_item_bottom div:nth-child(2) span {
   user-select: text;
   -webkit-user-select: text;
@@ -1815,12 +1952,14 @@
 }
 @media screen and (max-width: 1200px) {
   .admin_menu_content .users_list_content_item {
-    width: calc(50% - var(--margin) * 2);
+    width: 48%;
+    margin: calc(var(--margin) / 4) 1%;
   }
 }
 @media screen and (max-width: 768px) {
   .admin_menu_content .users_list_content_item {
-    width: calc(100% - var(--margin) * 2);
+    width: 98%;
+    margin: calc(var(--margin) / 4) 1%;
   }
 }
 .admin_menu_content .users_list {
@@ -1855,7 +1994,7 @@
 .admin_menu_content .logs_content i:hover {
   cursor: pointer;
 }
-.admin_menu_content .logs_content i.active {
+.admin_menu_content .logs_content i.reload_active {
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
@@ -1902,6 +2041,13 @@
   background-color: var(--button-background);
   border-radius: var(--border-radius);
 }
+.admin_menu_content .logs_content_item p {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+}
 .admin_menu_content .logs_content_item_error {
   border: solid 0.2em var(--incorrect-dark);
 }
@@ -1915,6 +2061,11 @@
 }
 .admin_menu_content .logs_content_item span.user {
   color: var(--accent);
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
 }
 .admin_menu_content .logs_content_item_data {
   width: 100%;
