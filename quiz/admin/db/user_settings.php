@@ -78,7 +78,7 @@ if ($conn->connect_error) {
                             <span>".$subject_name."</span>
                         </div>
                         <div class='reload_users_user' data-code='".$user_code."'>
-                            <i class='fa-solid fa-rotate-right'></i>
+                            <i class='fa-solid fa-arrow-rotate-right'></i>
                             <span>".$date_watch_user."</span>
                         </div>
                     </div>
